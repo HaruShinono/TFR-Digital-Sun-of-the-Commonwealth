@@ -115,7 +115,7 @@ You don't need to be a professional. Enthusiasm and a willingness to help are mo
 ## Credits & Special Thanks
 
 - **The Fire Rises Development Team** – For creating the incredible base mod and Loji's storyline that inspired this project.
-- **Vedal987** – For all the chaos, streams, and unforgettable moments.
+- [**Vedal987**](https://www.twitch.tv/vedal987) – For all the chaos, streams, and unforgettable moments.
 - [**HOI4 MOD Editor – Visual All-in-One Editor**](https://steamcommunity.com/sharedfiles/filedetails/?id=3836980055) by KK.
 - [**Artwork**](https://www.pixiv.net/en/artworks/109800440) by 夜里一抹紫.
 - [**Neuro-sama Flag Design**](https://www.reddit.com/r/NeuroSama/comments/1hldl5d/neuro_talked_about_a_flag_for_when_she_dominates/) by Semi-Neutral.
