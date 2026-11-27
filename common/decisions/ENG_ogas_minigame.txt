@@ -1,0 +1,285 @@
+ENG_ogas_control_category = {
+
+	# Schdule +/-
+	ENG_swarm_ai_escalation_cycle = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		cancel_trigger = {
+			OR = {
+				NOT = { has_country_flag = ENG_ogas_minigame_active }
+				is_subject_of = SOV
+			}
+		}
+		days_mission_timeout = 12
+		is_good = no
+
+		timeout_effect = {
+			if = {
+				limit = { is_ai = yes }
+				random_list = {
+					60 = {
+						add_to_variable = { ENG_neuro_influence = 11 }
+						add_to_variable = { ENG_evil_influence = 4 }
+						add_to_variable = { ENG_vedal_influence = 3 }
+					}
+					25 = {
+						add_to_variable = { ENG_neuro_influence = 5 }
+						add_to_variable = { ENG_evil_influence = 8 }
+					}
+					15 = {
+						add_to_variable = { ENG_neuro_influence = 4 }
+						add_to_variable = { ENG_vedal_influence = 7 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					# 70% Pha TĂNG cạnh tranh (Evil & Vedal leo gắt)
+					25 = {
+						random_list = {
+							33 = { add_to_variable = { ENG_evil_influence = 8 } }
+							33 = { add_to_variable = { ENG_evil_influence = 10 } }
+							34 = { add_to_variable = { ENG_evil_influence = 12 } }
+						}
+						add_to_variable = { ENG_neuro_influence = -2 }
+						custom_effect_tooltip = ENG_sched_evil_surge_tt
+					}
+					25 = {
+						random_list = {
+							33 = { add_to_variable = { ENG_vedal_influence = 8 } }
+							33 = { add_to_variable = { ENG_vedal_influence = 10 } }
+							34 = { add_to_variable = { ENG_vedal_influence = 12 } }
+						}
+						add_to_variable = { ENG_evil_influence = -2 }
+						custom_effect_tooltip = ENG_sched_vedal_surge_tt
+					}
+					12 = {
+						random_list = {
+							33 = { add_to_variable = { ENG_neuro_influence = 6 } }
+							33 = { add_to_variable = { ENG_neuro_influence = 8 } }
+							34 = { add_to_variable = { ENG_neuro_influence = 10 } }
+						}
+						add_to_variable = { ENG_vedal_influence = 3 }
+						custom_effect_tooltip = ENG_sched_neuro_surge_tt
+					}
+					8 = {
+						add_to_variable = { ENG_neuro_influence = 4 }
+						add_to_variable = { ENG_evil_influence = 6 }
+						add_to_variable = { ENG_vedal_influence = 6 }
+						custom_effect_tooltip = ENG_sched_chaos_surge_tt
+					}
+					# 30% Pha GIẢM NGẪU NHIÊN 1-7%
+					10 = {
+						random_list = {
+							15 = { add_to_variable = { ENG_neuro_influence = -1 } }
+							15 = { add_to_variable = { ENG_neuro_influence = -2 } }
+							15 = { add_to_variable = { ENG_neuro_influence = -3 } }
+							15 = { add_to_variable = { ENG_neuro_influence = -4 } }
+							15 = { add_to_variable = { ENG_neuro_influence = -5 } }
+							15 = { add_to_variable = { ENG_neuro_influence = -6 } }
+							10 = { add_to_variable = { ENG_neuro_influence = -7 } }
+						}
+						custom_effect_tooltip = ENG_sched_neuro_drop_tt
+					}
+					10 = {
+						random_list = {
+							15 = { add_to_variable = { ENG_evil_influence = -1 } }
+							15 = { add_to_variable = { ENG_evil_influence = -2 } }
+							15 = { add_to_variable = { ENG_evil_influence = -3 } }
+							15 = { add_to_variable = { ENG_evil_influence = -4 } }
+							15 = { add_to_variable = { ENG_evil_influence = -5 } }
+							15 = { add_to_variable = { ENG_evil_influence = -6 } }
+							10 = { add_to_variable = { ENG_evil_influence = -7 } }
+						}
+						custom_effect_tooltip = ENG_sched_evil_drop_tt
+					}
+					10 = {
+						random_list = {
+							15 = { add_to_variable = { ENG_vedal_influence = -1 } }
+							15 = { add_to_variable = { ENG_vedal_influence = -2 } }
+							15 = { add_to_variable = { ENG_vedal_influence = -3 } }
+							15 = { add_to_variable = { ENG_vedal_influence = -4 } }
+							15 = { add_to_variable = { ENG_vedal_influence = -5 } }
+							15 = { add_to_variable = { ENG_vedal_influence = -6 } }
+							10 = { add_to_variable = { ENG_vedal_influence = -7 } }
+						}
+						custom_effect_tooltip = ENG_sched_vedal_drop_tt
+					}
+				}
+			}
+
+			ENG_check_swarm_minigame_victory = yes
+
+			if = {
+				limit = { has_country_flag = ENG_ogas_minigame_active }
+				activate_mission = ENG_swarm_ai_escalation_cycle
+			}
+		}
+	}
+
+	# Timeout 210 days
+	ENG_ogas_takeover_mission = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		cancel_trigger = {
+			OR = {
+				NOT = { has_country_flag = ENG_ogas_minigame_active }
+				is_subject_of = SOV
+			}
+		}
+		days_mission_timeout = 210
+		is_good = no
+
+		timeout_effect = {
+			if = {
+				limit = {
+					has_country_flag = ENG_ogas_minigame_active
+					NOT = { has_country_flag = ENG_swarm_minigame_resolved }
+				}
+				set_country_flag = ENG_swarm_minigame_resolved
+				clr_country_flag = ENG_ogas_minigame_active
+				if = {
+					limit = {
+						NOT = { check_variable = { ENG_neuro_influence < ENG_evil_influence } }
+						NOT = { check_variable = { ENG_neuro_influence < ENG_vedal_influence } }
+					}
+					country_event = swarm_uk.10
+				}
+				else_if = {
+					limit = {
+						check_variable = { ENG_evil_influence > ENG_neuro_influence }
+						NOT = { check_variable = { ENG_evil_influence < ENG_vedal_influence } }
+					}
+					country_event = swarm_uk.11
+				}
+				else = {
+					country_event = swarm_uk.12
+				}
+			}
+		}
+	}
+
+	# Interact buttons
+	ENG_suppress_evil_neuro_dec = {
+		icon = generic_operation
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_ogas_minigame_active }
+		available = { has_country_flag = ENG_ogas_minigame_active }
+		cost = 35
+		days_re_enable = 15
+		complete_effect = {
+			random_list = {
+				35 = {
+					add_to_variable = { ENG_evil_influence = -6 }
+					add_to_variable = { ENG_neuro_influence = 3 }
+				}
+				40 = {
+					add_to_variable = { ENG_evil_influence = -9 }
+					add_to_variable = { ENG_neuro_influence = 4 }
+				}
+				25 = {
+					add_to_variable = { ENG_evil_influence = -12 }
+					add_to_variable = { ENG_neuro_influence = 5 }
+				}
+			}
+			add_to_variable = { ENG_vedal_influence = 2 }
+			custom_effect_tooltip = ENG_suppress_evil_tt
+			ENG_check_swarm_minigame_victory = yes
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	ENG_distract_vedal_dec = {
+		icon = generic_political_discourse
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_ogas_minigame_active }
+		available = { has_country_flag = ENG_ogas_minigame_active }
+		cost = 35
+		days_re_enable = 15
+		complete_effect = {
+			random_list = {
+				35 = {
+					add_to_variable = { ENG_vedal_influence = -6 }
+					add_to_variable = { ENG_neuro_influence = 3 }
+				}
+				40 = {
+					add_to_variable = { ENG_vedal_influence = -9 }
+					add_to_variable = { ENG_neuro_influence = 4 }
+				}
+				25 = {
+					add_to_variable = { ENG_vedal_influence = -12 }
+					add_to_variable = { ENG_neuro_influence = 5 }
+				}
+			}
+			add_to_variable = { ENG_evil_influence = 2 }
+			custom_effect_tooltip = ENG_distract_vedal_tt
+			ENG_check_swarm_minigame_victory = yes
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	ENG_expand_neuro_nodes_dec = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_ogas_minigame_active }
+		available = { has_country_flag = ENG_ogas_minigame_active }
+		cost = 45
+		days_re_enable = 15
+		complete_effect = {
+			random_list = {
+				35 = { add_to_variable = { ENG_neuro_influence = 6 } }
+				45 = { add_to_variable = { ENG_neuro_influence = 9 } }
+				20 = { add_to_variable = { ENG_neuro_influence = 12 } }
+			}
+			add_to_variable = { ENG_evil_influence = 2 }
+			add_to_variable = { ENG_vedal_influence = 2 }
+			custom_effect_tooltip = ENG_expand_neuro_tt
+			ENG_check_swarm_minigame_victory = yes
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	ENG_empower_evil_dec = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_ogas_minigame_active }
+		available = { has_country_flag = ENG_ogas_minigame_active }
+		cost = 35
+		days_re_enable = 15
+		complete_effect = {
+			random_list = {
+				35 = { add_to_variable = { ENG_evil_influence = 8 } }
+				45 = { add_to_variable = { ENG_evil_influence = 11 } }
+				20 = { add_to_variable = { ENG_evil_influence = 14 } }
+			}
+			add_to_variable = { ENG_neuro_influence = -4 }
+			custom_effect_tooltip = ENG_empower_evil_tt
+			ENG_check_swarm_minigame_victory = yes
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	ENG_vedal_admin_override_dec = {
+		icon = generic_decision
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_ogas_minigame_active }
+		available = { has_country_flag = ENG_ogas_minigame_active }
+		cost = 35
+		days_re_enable = 15
+		complete_effect = {
+			random_list = {
+				35 = { add_to_variable = { ENG_vedal_influence = 8 } }
+				45 = { add_to_variable = { ENG_vedal_influence = 11 } }
+				20 = { add_to_variable = { ENG_vedal_influence = 14 } }
+			}
+			add_to_variable = { ENG_neuro_influence = -4 }
+			custom_effect_tooltip = ENG_vedal_override_tt
+			ENG_check_swarm_minigame_victory = yes
+		}
+		ai_will_do = { factor = 0 }
+	}
+}

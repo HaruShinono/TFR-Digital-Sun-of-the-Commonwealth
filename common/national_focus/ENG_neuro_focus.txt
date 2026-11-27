@@ -1,0 +1,2537 @@
+focus_tree = {
+	id = ENG_neuro_focus_tree
+	country = { factor = 0 }
+	default = no
+	continuous_focus_position = { x = 50 y = 1800 }
+
+	# =========================================================================
+	# CLUSTER A: INTERNAL DISCORD & RESTORATION OF THE BRITISH ISLES (22 FOCUSES, x = 0..20)
+	# =========================================================================
+
+	focus = {
+		id = ENG_ascension_of_the_swarm
+		icon = GFX_goal_generic_intelligence_exchange
+		x = 10
+		y = 0
+		cost = 3
+
+		completion_reward = {
+			add_political_power = 150
+			add_ideas = ENG_swarm_internal_reconciliation_1
+			add_country_leader_trait = ENG_neuro_civic_unifier_trait
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	focus = {
+		id = ENG_swarm_seize_broadcast_towers
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ENG_ascension_of_the_swarm }
+		x = 16
+		y = 1
+		cost = 4
+		completion_reward = {
+			add_popularity = { ideology = social_democrat popularity = 0.15 }
+			add_ideas = ENG_swarm_chat_parliament_idea
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_neutralize_rogue_mps
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_ascension_of_the_swarm }
+		x = 10
+		y = 1
+		cost = 4
+		completion_reward = {
+			add_political_power = 100
+			if = {
+				limit = { has_idea = ENG_westminster_paralysis }
+				swap_ideas = {
+					remove_idea = ENG_westminster_paralysis
+					add_idea = ENG_westminster_paralysis_1
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_subdue_civil_war_remnants
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = ENG_ascension_of_the_swarm }
+		x = 4
+		y = 1
+		cost = 4
+		completion_reward = {
+			add_war_support = 0.10
+			remove_ideas = ENG_conflict_military_insubordination
+			division_template = {
+				name = "Neuro's Loyal Swarm Guards"
+				priority = 2
+				regiments = {
+					Special_Forces = { x = 0 y = 0 }
+					Special_Forces = { x = 0 y = 1 }
+					Special_Forces = { x = 0 y = 2 }
+					Special_Forces = { x = 1 y = 0 }
+					Special_Forces = { x = 1 y = 1 }
+					Special_Forces = { x = 1 y = 2 }
+				}
+				support = {
+					L_Recce_Comp = { x = 0 y = 0 }
+					L_Engi_Comp = { x = 0 y = 1 }
+					combat_service_support_company = { x = 0 y = 2 }
+					Arty_Battery = { x = 0 y = 3 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Loyal Swarm Guards\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	focus = {
+		id = ENG_swarm_address_royal_family
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_swarm_seize_broadcast_towers }
+		x = 14
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_ideas = ENG_swarm_balmoral_accord_idea
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_free_press_and_chat_filters
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_swarm_seize_broadcast_towers }
+		x = 17
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_stability = 0.08
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_trial_of_the_politicians
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ENG_swarm_neutralize_rogue_mps }
+		x = 11
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = { ideology = social_democrat popularity = 0.10 }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_union_to_moderator_reform
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_swarm_neutralize_rogue_mps }
+		x = 9
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_ideas = ENG_swarm_moderator_unions_idea
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_disarm_paramilitary_factions
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = ENG_swarm_subdue_civil_war_remnants }
+		x = 6
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 6000 }
+			add_stability = 0.05
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_pacify_anti_tech_rioters
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ENG_swarm_subdue_civil_war_remnants }
+		x = 3
+		y = 2
+		cost = 4
+		completion_reward = {
+			add_stability = 0.06
+			add_manpower = 75000
+			remove_ideas = ENG_conflict_luddite_sabotage
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_scottish_autonomy_node
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_address_royal_family }
+		x = 14
+		y = 3
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { SCO = { exists = yes } }
+				create_wargoal = { type = annex_everything target = SCO }
+			}
+			every_state = { limit = { is_core_of = SCO } add_core_of = ENG }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_welsh_cultural_preservation
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_swarm_free_press_and_chat_filters }
+		x = 17
+		y = 3
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { WAS = { exists = yes } }
+				create_wargoal = { type = annex_everything target = WAS }
+			}
+			every_state = { limit = { is_core_of = WAS } add_core_of = ENG }
+			add_stability = 0.05
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_deprecate_party_divisions
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ENG_swarm_trial_of_the_politicians }
+		prerequisite = { focus = ENG_swarm_union_to_moderator_reform }
+		x = 10
+		y = 3
+		cost = 5
+		completion_reward = {
+			add_popularity = { ideology = social_democrat popularity = 0.20 }
+			add_political_power = 100
+			if = {
+				limit = { has_idea = ENG_westminster_paralysis_1 }
+				swap_ideas = {
+					remove_idea = ENG_westminster_paralysis_1
+					add_idea = ENG_westminster_paralysis_2
+				}
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+
+	
+focus = {
+		id = ENG_swarm_ireland_integration_pact
+		icon = GFX_goal_generic_alliance
+		x = 6
+		y = 4
+
+		prerequisite = {
+			focus = ENG_swarm_union_to_moderator_reform
+		}
+		prerequisite = {
+			focus = ENG_swarm_disarm_paramilitary_factions
+		}
+
+		cost = 5
+
+		bypass = {
+			IRE = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+			NIR = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+			IRA = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+		}
+
+		completion_reward = {
+			# 1. Add cores for all Ireland, Northern Ireland, and IRA territory BEFORE declaring war
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = IRE
+						is_core_of = NIR
+						is_core_of = IRA
+					}
+				}
+				add_core_of = ENG
+			}
+
+			# 2. Declare war to reclaim core states (only when not in the same faction)
+			if = {
+				limit = {
+					IRE = {
+						exists = yes
+						NOT = { is_in_faction_with = ENG }
+					}
+				}
+				declare_war_on = {
+					target = IRE
+					type = take_core_state
+				}
+			}
+			if = {
+				limit = {
+					NIR = {
+						exists = yes
+						NOT = { is_in_faction_with = ENG }
+					}
+				}
+				declare_war_on = {
+					target = NIR
+					type = take_core_state
+				}
+			}
+			if = {
+				limit = {
+					IRA = {
+						exists = yes
+						NOT = { is_in_faction_with = ENG }
+					}
+				}
+				declare_war_on = {
+					target = IRA
+					type = take_core_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+
+
+	focus = {
+		id = ENG_swarm_national_reconciliation_stream
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_scottish_autonomy_node }
+		prerequisite = { focus = ENG_swarm_welsh_cultural_preservation }
+		prerequisite = { focus = ENG_swarm_deprecate_party_divisions }
+		x = 15
+		y = 4
+		cost = 5
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 100
+			remove_ideas = ENG_conflict_gchq_blackout
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_rebuild_whitehall_mainframe
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 1
+		y = 4
+		prerequisite = { focus = ENG_swarm_disarm_paramilitary_factions }
+		prerequisite = { focus = ENG_swarm_pacify_anti_tech_rioters }
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_ogas_uk_system }
+				swap_ideas = {
+					remove_idea = ENG_ogas_uk_system
+					add_idea = ENG_swarm_central_network
+				}
+			}
+			else = {
+				add_ideas = ENG_swarm_central_network
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = industrial_complex level = 4 instant_build = yes }
+			}
+			add_research_slot = 1
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_core_the_shattered_isles
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = ENG_swarm_national_reconciliation_stream }
+		prerequisite = { focus = ENG_swarm_ireland_integration_pact }
+		x = 10
+		y = 6
+		cost = 5
+
+		completion_reward = {
+			# 1. Grant cores across the British Isles, Northern Ireland, and Ireland
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = ENG
+						is_core_of = ENG
+						is_core_of = UK2
+						is_core_of = SCO
+						is_core_of = WAS
+						is_core_of = NIR
+						is_core_of = IRA
+						is_core_of = IRE
+					}
+				}
+				add_core_of = ENG
+			}
+
+			# 2. Recover states in Great Britain, Northern Ireland, and Ireland if held by allies, puppets, or domestic opponents
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = ENG
+						is_core_of = UK2
+						is_core_of = SCO
+						is_core_of = WAS
+						is_core_of = NIR
+						is_core_of = IRA
+						is_core_of = IRE
+					}
+					NOT = { is_owned_by = ENG }
+					owner = {
+						OR = {
+							is_in_faction_with = ENG
+							is_subject_of = ENG
+							tag = UK2
+							tag = SCO
+							tag = WAS
+							tag = NIR
+							tag = IRA
+							tag = IRE
+						}
+					}
+				}
+				ENG = { transfer_state = PREV }
+			}
+
+			# 3. If an ally is only temporarily occupying a state during the war, transfer control to ENG
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = ENG
+						is_core_of = NIR
+						is_core_of = IRA
+						is_core_of = IRE
+					}
+					NOT = { is_controlled_by = ENG }
+					controller = {
+						OR = {
+							is_in_faction_with = ENG
+							is_subject_of = ENG
+						}
+					}
+				}
+				ENG = { set_state_controller = PREV }
+			}
+
+			if = {
+				limit = { has_idea = ENG_swarm_internal_reconciliation_1 }
+				swap_ideas = {
+					remove_idea = ENG_swarm_internal_reconciliation_1
+					add_idea = ENG_swarm_internal_reconciliation_2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 12
+		}
+	}
+
+	focus = {
+		id = ENG_swarm_declare_commonwealth_of_britain
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_swarm_core_the_shattered_isles }
+		x = 10
+		y = 7
+		cost = 5
+		completion_reward = {
+			remove_ideas = {
+				ENG_westminster_paralysis
+				ENG_westminster_paralysis_1
+				ENG_westminster_paralysis_2
+			}
+			set_cosmetic_tag = ENG_swarm_commonwealth
+			add_political_power = 150
+			add_stability = 0.10
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	focus = {
+		id = ENG_swarm_establish_neuro_guardians
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = ENG_swarm_declare_commonwealth_of_britain }
+		x = 9
+		y = 8
+		cost = 5
+		completion_reward = {
+			add_manpower = 150000
+			capital_scope = {
+				create_unit = {
+					division = "name = \"2nd Loyal Swarm Guards\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_education_rhythm_curriculum
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_swarm_declare_commonwealth_of_britain }
+		x = 11
+		y = 8
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_rhythm_education_idea
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_social_harmony_locked
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_establish_neuro_guardians }
+		prerequisite = { focus = ENG_swarm_education_rhythm_curriculum }
+		x = 10
+		y = 10
+		cost = 5
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	# =========================================================================
+	# CLUSTER B: ECONOMIC-POLITICAL RECOVERY (16 FOCUSES, x = 20..32)
+	# =========================================================================
+
+	focus = {
+		id = ENG_swarm_post_war_economic_triage
+		icon = GFX_goal_generic_consumer_goods
+		x = 26
+		y = 0
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_zero_latency_economy_1
+			add_country_leader_trait = ENG_neuro_economic_architect_trait
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_stabilize_the_pound_sterling
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_swarm_post_war_economic_triage }
+		x = 22
+		y = 1
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_sterling_stabilized_idea
+			remove_ideas = { ENG_tfr_furlough_debt_spiral ENG_tfr_cost_of_living_crisis ENG_conflict_capital_flight }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_automate_the_isles
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_swarm_post_war_economic_triage }
+		x = 26
+		y = 1
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = industrial_complex level = 4 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_algorithmic_welfare
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_post_war_economic_triage }
+		x = 30
+		y = 1
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_automated_welfare_idea
+			remove_ideas = { ENG_struggling_health_sector_idea ENG_struggling_health_sector_idea_1 }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_london_fiber_hub
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_swarm_stabilize_the_pound_sterling }
+		
+		x = 21
+		y = 2
+		cost = 5
+		available = {
+			126 = { is_owned_and_controlled_by = ENG }
+		}
+		completion_reward = {
+			126 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_silicon_glen_superclusters
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_swarm_stabilize_the_pound_sterling }
+		x = 23
+		y = 2
+		cost = 6
+		available = {
+			OR = {
+				121 = { is_owned_and_controlled_by = ENG }
+				133 = { is_owned_and_controlled_by = ENG }
+			}
+		}
+		completion_reward = {
+			add_tech_bonus = { name = ENG_swarm_silicon_glen_superclusters bonus = 1.0 uses = 2 category = electronics }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_reopen_northern_steel_mills
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_automate_the_isles }
+		x = 25
+		y = 2
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = steel amount = 28 }
+				add_resource = { type = aluminium amount = 16 }
+			}
+		}
+		available = {
+			131 = { is_owned_and_controlled_by = ENG }
+			130 = { is_owned_and_controlled_by = ENG }
+		}
+		completion_reward = {
+			131 = { add_resource = { type = steel amount = 16 } }
+			130 = {
+				add_resource = { type = steel amount = 12 }
+				add_resource = { type = aluminium amount = 16 }
+			}
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_clyde_and_belfast_mega_yards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_automate_the_isles }
+		x = 27
+		y = 2
+		cost = 6
+		available = {
+			133 = { is_owned_and_controlled_by = ENG }
+			119 = { is_owned_and_controlled_by = ENG }
+		}
+		completion_reward = {
+			133 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+			119 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_greggs_and_plushie_economics
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_algorithmic_welfare }
+		x = 29
+		y = 2
+		cost = 5
+		completion_reward = {
+			remove_ideas = { ENG_systemic_poverty ENG_systemic_poverty_1 }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_direct_e_democracy_polls
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = ENG_algorithmic_welfare }
+		x = 31
+		y = 2
+		cost = 5
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.05
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_high_speed_maglev_britain
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_swarm_london_fiber_hub }
+		prerequisite = { focus = ENG_swarm_silicon_glen_superclusters }
+		available = {
+			126 = { is_owned_and_controlled_by = ENG } # London
+			131 = { is_owned_and_controlled_by = ENG } # North
+			121 = { is_owned_and_controlled_by = ENG } # Scotland
+		}
+		x = 22
+		y = 3
+		cost = 5
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					OR = { state = 126 state = 130 state = 131 state = 132 state = 133 state = 121 }
+					is_owned_and_controlled_by = ENG
+				}
+				add_extra_state_shared_building_slots = 1
+				if = {
+					limit = {
+						free_building_slots = { building = infrastructure size > 0 }
+					}
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_north_sea_perpetual_grid
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = ENG_swarm_reopen_northern_steel_mills }
+		prerequisite = { focus = ENG_swarm_clyde_and_belfast_mega_yards }
+		x = 26
+		y = 3
+		cost = 6
+		completion_reward = {
+			add_ideas = ENG_swarm_perpetual_grid_idea
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = oil amount = 20 }
+				add_resource = { type = tungsten amount = 16 }
+				add_resource = { type = chromium amount = 16 }
+			}
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_housing_abundance_protocol
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_swarm_greggs_and_plushie_economics }
+		prerequisite = { focus = ENG_swarm_direct_e_democracy_polls }
+		x = 30
+		y = 3
+		cost = 5
+		available = {
+			any_owned_state = {
+				is_core_of = ENG
+				is_controlled_by = ENG
+			}
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = ENG
+					is_controlled_by = ENG
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			add_manpower = 150000
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_smr_reactor_clusters
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_swarm_high_speed_maglev_britain }
+		prerequisite = { focus = ENG_swarm_north_sea_perpetual_grid }
+		x = 24
+		y = 4
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+				add_building_construction = { type = synthetic_refinery level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_transparent_budget_ledger
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_swarm_north_sea_perpetual_grid }
+		prerequisite = { focus = ENG_swarm_housing_abundance_protocol }
+		x = 28
+		y = 4
+		cost = 5
+		completion_reward = {
+			add_political_power = 150
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_economic_singularity_achieved
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_swarm_smr_reactor_clusters }
+		prerequisite = { focus = ENG_swarm_transparent_budget_ledger }
+		x = 26
+		y = 5
+		cost = 6
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_swarm_zero_latency_economy_1 }
+				swap_ideas = {
+					remove_idea = ENG_swarm_zero_latency_economy_1
+					add_idea = ENG_swarm_zero_latency_economy_2
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# =========================================================================
+	# CLUSTER C: REARMAMENT, TFR SHIPBUILDING & DIVISION SPAWNING 
+	# =========================================================================
+
+	focus = {
+		id = ENG_swarm_military_reboot
+		icon = GFX_goal_generic_military_sphere
+		x = 36
+		y = 5
+		cost = 5
+		completion_reward = {
+			army_experience = 60
+			navy_experience = 60
+			air_experience = 60
+			add_ideas = ENG_swarm_ground_automation_1
+			add_country_leader_trait = ENG_neuro_supreme_strategist_trait
+		}
+		ai_will_do = { factor = 14 }
+	}
+
+	# --- Army & Elite Divisions ---
+	focus = {
+		id = ENG_swarm_drone_doctrine
+		icon = GFX_goal_generic_axis_build_infantry
+		prerequisite = { focus = ENG_swarm_military_reboot }
+		x = 31
+		y = 6
+		cost = 5
+		completion_reward = {
+			add_tech_bonus = { name = ENG_swarm_drone_doctrine bonus = 1.0 uses = 2 category = infantry_weapons }
+			add_tech_bonus = { name = ENG_swarm_drone_doctrine bonus = 1.0 uses = 2 category = support_tech }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_autonomous_infantry_support
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ENG_swarm_drone_doctrine }
+		x = 29
+		y = 7
+		cost = 5
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 10000 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 2500 }
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_challenger_4_ai_tanks
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ENG_swarm_drone_doctrine }
+		x = 31
+		y = 7
+		cost = 6
+		completion_reward = {
+			set_technology = { terminator_ai_tech = 1 popup = no }
+			add_tech_bonus = { name = ENG_swarm_challenger_4_ai_tanks bonus = 1.0 uses = 2 category = armor }
+			if = {
+				limit = { NOT = { has_dlc = "No Step Back" } }
+				add_equipment_to_stockpile = { type = modern_tank_equipment amount = 600 }
+			}
+			else = {
+				add_tech_bonus = { name = ENG_swarm_nsb_armor_bonus bonus = 1.0 uses = 1 category = armor }
+				random_owned_controlled_state = {
+					limit = { is_core_of = ENG is_controlled_by = ENG }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_swarm_special_forces_neural_links
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = ENG_swarm_autonomous_infantry_support }
+		prerequisite = { focus = ENG_swarm_challenger_4_ai_tanks }
+		x = 30
+		y = 8
+		cost = 6
+		completion_reward = {
+			set_technology = { infiltrator_company_tech = 1 popup = no }
+			if = {
+				limit = { has_idea = ENG_swarm_ground_automation_1 }
+				swap_ideas = {
+					remove_idea = ENG_swarm_ground_automation_1
+					add_idea = ENG_swarm_ground_automation_2
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Swarm SpecOps Vanguard\" division_template = \"Neuro's Royal Swarm Guards\" start_experience_factor = 0.9 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	# --- Navy: DIRECT TFR WARSHIP CONSTRUCTION! ---
+	focus = {
+		id = ENG_project_global_sync
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_swarm_military_reboot }
+		x = 36
+		y = 6
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_blue_water_ping_armada
+			add_country_leader_trait = ENG_neuro_naval_supremacist_trait
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = dockyard level = 4 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_unmanned_carrier_groups
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ENG_project_global_sync }
+		x = 34
+		y = 7
+		cost = 7
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { improved_ship_hull_carrier = 1 popup = no }
+			}
+			else = {
+				set_technology = { improved_carrier = 1 popup = no }
+			}
+			add_tech_bonus = { name = ENG_swarm_unmanned_carrier_groups bonus = 1.0 uses = 2 category = cv_tech }
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = dockyard level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_type_83_dragonfire_cruisers
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_project_global_sync }
+		x = 36
+		y = 7
+		cost = 7
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { improved_ship_hull_light = 1 popup = no }
+				set_technology = { improved_dp_light_battery = 1 popup = no }
+			}
+			else = {
+				set_technology = { improved_destroyer = 1 popup = no }
+			}
+			add_tech_bonus = { name = ENG_swarm_type_83_dragonfire_cruisers bonus = 1.0 uses = 2 category = dd_tech }
+			navy_experience = 50
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_silent_ai_hunter_submarines
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = ENG_project_global_sync }
+		x = 38
+		y = 7
+		cost = 7
+		completion_reward = {
+			remove_ideas = ENG_conflict_trident_standoff
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { advanced_ship_hull_nuclear_submarine = 1 popup = no }
+				set_technology = { electric_torpedo = 1 popup = no }
+			}
+			else = {
+				set_technology = { improved_submarine = 1 popup = no }
+			}
+			add_tech_bonus = { name = ENG_swarm_silent_ai_hunter_submarines bonus = 1.0 uses = 2 category = ss_tech }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_amphibious_landing_swarms
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = ENG_swarm_unmanned_carrier_groups }
+		prerequisite = { focus = ENG_swarm_type_83_dragonfire_cruisers }
+		x = 35
+		y = 8
+		cost = 6
+		completion_reward = {
+			add_ideas = ENG_automated_swarm_warfare
+			add_equipment_to_stockpile = { type = convoy amount = 500 }
+		}
+		ai_will_do = { factor = 11 }
+	}
+
+	focus = {
+		id = ENG_swarm_merchant_convoy_automation
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_swarm_silent_ai_hunter_submarines }
+		x = 38
+		y = 8
+		cost = 5
+		completion_reward = {
+			add_equipment_to_stockpile = { type = convoy amount = 500 }
+			navy_experience = 50
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	# --- Air Force & Defense Industry ---
+	focus = {
+		id = ENG_swarm_tempest_unmanned_wingmen
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = ENG_swarm_military_reboot }
+		x = 41
+		y = 6
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_sky_net_airforce
+			add_tech_bonus = { name = ENG_swarm_tempest_unmanned_wingmen bonus = 1.0 uses = 2 category = light_fighter }
+			if = { 
+				limit = { has_dlc = "By Blood Alone" } set_technology = { artificial_intel_studies = 1 popup = no }
+				}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_stratospheric_bomber_drones
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = ENG_swarm_tempest_unmanned_wingmen }
+		x = 40
+		y = 7
+		cost = 6
+		completion_reward = {
+			add_tech_bonus = { name = ENG_swarm_stratospheric_bomber_drones bonus = 1.0 uses = 2 category = cat_strategic_bomber }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_orbital_recon_constellation
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_swarm_tempest_unmanned_wingmen }
+		x = 42
+		y = 7
+		cost = 5
+		completion_reward = {
+			add_ideas = ENG_swarm_cyber_ew_corps
+			set_technology = { tech_cyber_units_warfare = 1 popup = no }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_integrated_air_defense_dome
+		icon = GFX_goal_generic_air_defense
+		prerequisite = { focus = ENG_swarm_stratospheric_bomber_drones }
+		prerequisite = { focus = ENG_swarm_orbital_recon_constellation }
+		x = 41
+		y = 8
+		cost = 5
+		# In ENG_swarm_integrated_air_defense_dome:
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = ENG
+					is_controlled_by = ENG
+					free_building_slots = { building = anti_air_building size > 0 }
+				}
+				add_building_construction = { type = anti_air_building level = 2 instant_build = yes }
+			}
+		}
+
+		# In ENG_swarm_channel_firewall_fortifications:
+		available = {
+			126 = { is_owned_and_controlled_by = ENG }
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_coastal = yes
+					is_core_of = ENG
+					is_controlled_by = ENG
+				}
+				add_building_construction = { type = coastal_bunker level = 3 instant_build = yes }
+			}
+			126 = {
+				create_unit = {
+					division = "name = \"Channel Coastal Watch\" division_template = \"Infantry Brigade\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_overclock_bae_complexes
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_swarm_military_reboot }
+		x = 44
+		y = 6
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 11 }
+	}
+
+	focus = {
+		id = ENG_swarm_automated_munitions_mega_plants
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_swarm_overclock_bae_complexes }
+		x = 44
+		y = 7
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 11 }
+	}
+
+	focus = {
+		id = ENG_swarm_expeditionary_logistics_ai
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_swarm_automated_munitions_mega_plants }
+		x = 44
+		y = 8
+		cost = 5
+		completion_reward = {
+			add_equipment_to_stockpile = { type = motorized_equipment amount = 3000 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 1500 }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_armada_complete
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_swarm_special_forces_neural_links }
+		prerequisite = { focus = ENG_swarm_amphibious_landing_swarms }
+		prerequisite = { focus = ENG_swarm_merchant_convoy_automation }
+		prerequisite = { focus = ENG_swarm_integrated_air_defense_dome }
+		prerequisite = { focus = ENG_swarm_expeditionary_logistics_ai }
+		x = 36
+		y = 10
+		cost = 6
+		completion_reward = {
+			army_experience = 75
+			navy_experience = 75
+			air_experience = 75
+		}
+		ai_will_do = { factor = 12 }
+	}
+	# =========================================================================
+	# CLUSTER D: EUROPEAN DIPLOMACY & AMPHIBIOUS SHIPBUILDING (12 FOCUSES, x = 54..66)
+	# =========================================================================
+
+	focus = {
+		id = ENG_swarm_ping_the_continent
+		icon = GFX_goal_generic_radar
+		x = 18
+		y = 4
+		prerequisite = { focus = ENG_swarm_welsh_cultural_preservation }
+		cost = 5
+		completion_reward = {
+			add_political_power = 75
+			navy_experience = 35
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_probe_french_and_german_nets
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_swarm_ping_the_continent }
+		x = 22
+		y = 6
+		cost = 5
+		completion_reward = {
+			FRA = { add_stability = -0.08 add_political_power = -50 }
+			GER = { add_stability = -0.08 add_political_power = -50 }
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_swarm_atlantic_island_chain
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_swarm_ping_the_continent }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			ICE = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+		}
+		x = 18
+		y = 6
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { ICE = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = ICE }
+			}
+			add_equipment_to_stockpile = { type = convoy amount = 300 }
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	focus = {
+		id = ENG_swarm_commonwealth_remnant_outreach
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_swarm_ping_the_continent }
+		x = 15
+		y = 6
+		cost = 5
+		completion_reward = {
+			every_other_country = {
+				limit = {
+					OR = { tag = CAN tag = AST tag = NZL }
+					exists = yes
+				}
+				add_opinion_modifier = { target = ENG modifier = large_increase }
+			}
+			add_political_power = 75
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_swarm_channel_firewall_fortifications
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = ENG_swarm_probe_french_and_german_nets }
+		x = 21
+		y = 7
+		cost = 5
+		completion_reward = {
+			every_owned_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_building_construction = { type = coastal_bunker level = 3 instant_build = yes }
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Channel Coastal Watch\" division_template = \"Infantry Brigade\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_swarm_subvert_iberian_networks
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = ENG_swarm_probe_french_and_german_nets }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			POR = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+			SPR = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+		}
+		x = 23
+		y = 7
+		cost = 6
+		completion_reward = {
+			if = {
+				limit = { POR = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = POR }
+			}
+			if = {
+				limit = { SPR = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = SPR }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_swarm_nordic_cable_tapping
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_swarm_atlantic_island_chain }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			NOR = { OR = { exists = no is_in_faction_with = ENG is_subject_of = ENG } }
+		}
+		x = 17
+		y = 7
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { NOR = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = NOR }
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_swarm_mediterranean_gibraltar_bastion
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_swarm_atlantic_island_chain }
+		x = 19
+		y = 7
+		cost = 6
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { improved_ship_hull_cruiser = 1 popup = no }
+			}
+			else = {
+				set_technology = { improved_light_cruiser = 1 popup = no }
+			}
+			add_tech_bonus = { name = ENG_swarm_mediterranean_gibraltar_bastion bonus = 1.0 uses = 2 category = cl_tech }
+			navy_experience = 50
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	focus = {
+		id = ENG_swarm_secure_indian_ocean_diego_garcia
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_swarm_commonwealth_remnant_outreach }
+		x = 15
+		y = 8
+		cost = 5
+		completion_reward = {
+			air_experience = 40
+			navy_experience = 40
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = dockyard level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	focus = {
+		id = ENG_swarm_hack_csto_satellites
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_swarm_channel_firewall_fortifications }
+		prerequisite = { focus = ENG_swarm_subvert_iberian_networks }
+		x = 22
+		y = 8
+		cost = 5
+		completion_reward = {
+			SOV = { add_political_power = -75 add_stability = -0.05 }
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	focus = {
+		id = ENG_swarm_disrupt_european_supply_lines
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ENG_swarm_nordic_cable_tapping }
+		prerequisite = { focus = ENG_swarm_mediterranean_gibraltar_bastion }
+		x = 18
+		y = 8
+		cost = 5
+		completion_reward = {
+			army_experience = 40
+			add_command_power = 50
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	focus = {
+		id = ENG_swarm_look_toward_the_east
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_swarm_hack_csto_satellites }
+		prerequisite = { focus = ENG_swarm_disrupt_european_supply_lines }
+		prerequisite = { focus = ENG_swarm_secure_indian_ocean_diego_garcia }
+		x = 18
+		y = 10
+		cost = 5
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.08
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# =========================================================================
+	# CLUSTER E: SUPERWEAPONS & JOINT R&D WITH 5 MILITARY FACTORIES (15 FOCUSES, x = 68..86)
+	# =========================================================================
+
+	# =========================================================================
+	# CLUSTER E: SUPERWEAPONS — TWO BRANCHES (IN-HOUSE DESIGN vs POST-SSW ALLIANCE, NO NUKES)
+	# =========================================================================
+
+
+	focus = {
+		id = ENG_swarm_pact_shared_rd_protocols
+		icon = GFX_goal_tfv_generic_tech_sharing
+		x = 1
+		y = 5
+		prerequisite = { focus = ENG_swarm_rebuild_whitehall_mainframe }
+		cost = 5
+		completion_reward = {
+			set_country_flag = ENG_pact_rd_unlocked
+			custom_effect_tooltip = ENG_pact_rd_unlocked_tt
+            add_research_slot = 1
+		}
+		ai_will_do = { factor = 16 }
+	}
+
+	# --- BRANCH 1: EARLY IN-HOUSE DESIGN (No SSW alliance required) ---
+	focus = {
+		id = ENG_swarm_project_mobile_suit_gundam
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_swarm_pact_shared_rd_protocols }
+		x = 6
+		y = 6
+		cost = 5
+		completion_reward = {
+			set_country_flag = ENG_unlocked_drone_swarm_rd
+			custom_effect_tooltip = ENG_unlock_drone_swarm_dec_tt
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_psycommu_neuro_interface
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ENG_swarm_project_mobile_suit_gundam }
+		x = 6
+		y = 7
+		cost = 5
+		completion_reward = {
+			set_country_flag = ENG_unlocked_qts14_rd
+			custom_effect_tooltip = ENG_unlock_qts14_dec_tt
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_pact_resource_pooling
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_swarm_psycommu_neuro_interface }
+		x = 6
+		y = 8
+		cost = 5
+		completion_reward = {
+			add_political_power = 100
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	# --- BRANCH 2: POST-SSW-ALLIANCE FOCUS (Only requires an SSW alliance; PRC is not required!) ---
+	focus = {
+		id = ENG_swarm_ssw_joint_arsenals_unlock
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_swarm_pact_shared_rd_protocols }
+		available = {
+			OR = {
+				has_completed_focus = ENG_swarm_sisters_pact_focus
+				has_completed_focus = ENG_sibling_rivalry_protocol
+				has_completed_focus = ENG_swarm_welcome_home_evil
+				is_in_faction = yes
+				is_in_faction_with = "PRC"
+			}
+		}
+		x = 0
+		y = 6
+		cost = 5
+		completion_reward = {
+			add_political_power = 75
+			custom_effect_tooltip = ENG_ssw_arsenal_unlocked_tt
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	focus = {
+		id = ENG_swarm_project_space_marines
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = ENG_swarm_ssw_joint_arsenals_unlock }
+		x = -4
+		y = 7
+		cost = 6
+		completion_reward = {
+			set_country_flag = ENG_unlocked_space_marines_rd
+			custom_effect_tooltip = ENG_unlock_space_marines_dec_tt
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_power_armor_mass_forging
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_swarm_project_space_marines }
+		x = -4
+		y = 8
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_project_orbital_ping_laser
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_swarm_ssw_joint_arsenals_unlock }
+		x = -1
+		y = 7
+		cost = 6
+		completion_reward = {
+			set_country_flag = ENG_unlocked_starlight_rd
+			custom_effect_tooltip = ENG_unlock_starlight_dec_tt
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_project_harpoons_kinetic_rods
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = ENG_swarm_project_orbital_ping_laser }
+		x = -1
+		y = 8
+		cost = 6
+		completion_reward = {
+			set_country_flag = ENG_unlocked_harpoon_rd
+			custom_effect_tooltip = ENG_unlock_harpoon_dec_tt
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_hive_mind_tactical_sync
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_swarm_ssw_joint_arsenals_unlock }
+		x = 3
+		y = 7
+		cost = 6
+		completion_reward = {
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				add_ideas = ENG_swarm_hive_mind_sync_idea
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_reverse_engineer_eastern_tech
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_swarm_hive_mind_tactical_sync }
+		x = 3
+		y = 8
+		cost = 6
+		completion_reward = {
+			add_tech_bonus = { name = ENG_swarm_reverse_engineer_eastern_tech bonus = 1.0 uses = 2 category = industry }
+			army_experience = 60
+			air_experience = 60
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_beyond_human_limitations
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = ENG_swarm_pact_resource_pooling }
+		prerequisite = { focus = ENG_swarm_power_armor_mass_forging }
+		prerequisite = { focus = ENG_swarm_project_harpoons_kinetic_rods }
+		prerequisite = { focus = ENG_swarm_reverse_engineer_eastern_tech }
+		x = 1
+		y = 10
+		cost = 6
+		completion_reward = {
+			add_war_support = 0.15
+			add_political_power = 150
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# =========================================================================
+	# CLUSTER F: 3 CHINESE BRANCHES -> CONVERGENCE -> JAPAN (MIKU/GUNDAM) & TAIWAN
+	# (x = 12..40, y = 9..18)
+	# =========================================================================
+
+	# =========================================================================
+	# CLUSTER F: COMPACT BRIDGE (WE ARE SO BACK? -> FAMILY REUNION?)
+	# =========================================================================
+
+	focus = {
+		id = ENG_swarm_we_are_so_back
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_social_harmony_locked }
+		prerequisite = { focus = ENG_swarm_economic_singularity_achieved }
+		prerequisite = { focus = ENG_swarm_armada_complete }
+		x = 26
+		y = 12
+		cost = 4
+		completion_reward = {
+			add_political_power = 75
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	focus = {
+		id = ENG_swarm_family_reunion
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_swarm_we_are_so_back }
+		x = 26
+		y = 13
+		cost = 4
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.05
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	# --- TWO PARALLEL FOCUSES AT y = 11 (AUTOMATICALLY BYPASSED WHEN REQUIREMENTS ARE MET!) ---
+	focus = {
+		id = ENG_old_sister_new_sister
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_swarm_family_reunion }
+		mutually_exclusive = { focus = ENG_swarm_welcome_home_evil }
+		available = {
+			PRC = {
+				exists = yes
+				has_country_flag = PRC_forced_loji_route
+			}
+		}
+		bypass = {
+			PRC = {
+				exists = yes
+				OR = {
+					has_global_flag = PRC_coup_event_fired
+					has_country_leader = { character = PRC_long_march ruling_only = yes }
+				}
+			}
+		}
+		x = 21
+		y = 14
+		cost = 5
+
+		completion_reward = {
+			set_country_flag = ENG_letter_sent_to_prc
+			PRC = {
+				country_event = { id = swarm_prc.2 days = 1 }
+			}
+			custom_effect_tooltip = ENG_send_pact_invite_tt
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	focus = {
+		id = ENG_swarm_welcome_home_evil
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_swarm_family_reunion }
+		mutually_exclusive = { focus = ENG_old_sister_new_sister }
+		available = {
+			OR = {
+				has_country_flag = ENG_prc_rejected_evil_initial
+				PRC = { has_country_flag = PRC_rejected_evil_neuro_flag }
+				PRC = { exists = no }
+			}
+		}
+		bypass = {
+			OR = {
+				has_country_flag = ENG_prc_rejected_evil_initial
+				PRC = { has_country_flag = PRC_rejected_evil_neuro_flag }
+				PRC = { exists = no }
+			}
+		}
+		x = 32
+		y = 14
+		cost = 5
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_idea = ENG_twin_mainframe_idea } }
+				add_ideas = ENG_twin_mainframe_idea
+			}
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = swarm_sisters_pact
+			}
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	# --- BRANCH F1: PRC AGREES TO EVIL & AGREES TO THE PACT (x = 14..18, y = 12..14) ---
+	focus = {
+		id = ENG_swarm_sisters_pact_focus
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = ENG_old_sister_new_sister }
+		mutually_exclusive = { focus = ENG_sibling_rivalry_protocol }
+		available = { has_country_flag = ENG_prc_accepted_pact }
+		x = 18
+		y = 15
+		cost = 5
+		completion_reward = {
+			ENG_merge_swarm_sisters_pact_effect = yes
+			every_country = {
+				limit = { is_ai = no }
+				set_country_flag = ENG_ssw_pact_super_flag
+			}
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	focus = {
+		id = ENG_beijing_london_neural_bridge
+		icon = GFX_goal_tfv_generic_tech_sharing
+		prerequisite = { focus = ENG_swarm_sisters_pact_focus }
+		x = 16
+		y = 16
+		cost = 6
+		completion_reward = {
+			add_ideas = ENG_swarm_sisters_neural_link
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_joint_swarm_arsenals
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_swarm_sisters_pact_focus }
+		x = 20
+		y = 16
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+			}
+			PRC = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 4
+					add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_eastern_pacific_preparation
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = ENG_beijing_london_neural_bridge }
+		prerequisite = { focus = ENG_joint_swarm_arsenals }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 18
+		y = 17
+		cost = 5
+		completion_reward = {
+			add_war_support = 0.10
+			PRC = { add_war_support = 0.10 }
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Sino-British Liaison Guards\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 2
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# --- BRANCH F2: PRC AGREES TO EVIL BUT REJECTS THE PACT -> OPERATION: GYMBAG (x = 24..28, y = 12..14) ---
+	focus = {
+		id = ENG_sibling_rivalry_protocol
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ENG_old_sister_new_sister }
+		mutually_exclusive = { focus = ENG_swarm_sisters_pact_focus }
+		available = {
+			has_country_flag = ENG_prc_rejected_pact
+			has_war = no
+		}
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 15
+		cost = 5
+		completion_reward = {
+			add_war_support = 0.15
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = swarm_sisters_pact
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_cyberwarfare_mobilization
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ENG_sibling_rivalry_protocol }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 24
+		y = 16
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = arms_factory level = 4 instant_build = yes }
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Beijing Assault Regiment\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_transcontinental_strike_fleet
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_sibling_rivalry_protocol }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 28
+		y = 16
+		cost = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = { type = dockyard level = 4 instant_build = yes }
+			}
+			add_equipment_to_stockpile = { type = convoy amount = 400 }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_operation_gymbag_focus
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = ENG_cyberwarfare_mobilization }
+		prerequisite = { focus = ENG_transcontinental_strike_fleet }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			PRC = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+		}
+		x = 26
+		y = 17
+		cost = 5
+		will_lead_to_war_with = PRC
+		completion_reward = {
+			create_wargoal = { type = puppet_wargoal_focus target = PRC }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	# --- BRANCH F3: CONTINUES FROM WELCOME HOME, LIL SISTER (x = 34..38, y = 12..13) ---
+	focus = {
+		id = ENG_swarm_twin_neural_overdrive
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_swarm_welcome_home_evil }
+		x = 31
+		y = 16
+		cost = 6
+		completion_reward = {
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = swarm_sisters_pact
+			}
+			add_political_power = 150
+			add_ideas = ENG_swarm_sisters_neural_link
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_prepare_pacific_armada
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_swarm_welcome_home_evil }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 35
+		y = 16
+		cost = 6
+		completion_reward = {
+			add_war_support = 0.15
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Twin Vanguard Brigade\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_operation_harpoons_purge_beijing
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_swarm_twin_neural_overdrive }
+		prerequisite = { focus = ENG_swarm_prepare_pacific_armada }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			PRC = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+		}
+		x = 33
+		y = 17
+		cost = 7
+		completion_reward = {
+			country_event = swarm_uk.33
+			custom_effect_tooltip = ENG_coup_beijing_loji_tt
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	# --- COMMON CONVERGENCE POINT FOR ALL 3 PRC BRANCHES: JAPAN PREPARATIONS -> SKI CRASH -> TAIWAN (y = 15..19) ---
+	focus = {
+		id = ENG_swarm_pacific_staging_bases
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = {
+			focus = ENG_eastern_pacific_preparation
+			focus = ENG_operation_gymbag_focus
+			focus = ENG_operation_harpoons_purge_beijing
+		}
+		available = {
+			has_war = no
+			PRC = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+			OR = {
+				has_completed_focus = ENG_eastern_pacific_preparation
+				has_country_flag = ENG_prc_forgiven_transhumans_restored
+				has_completed_focus = ENG_operation_harpoons_purge_beijing
+			}
+		}
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 18
+		cost = 5
+		completion_reward = {
+			add_equipment_to_stockpile = { type = convoy amount = 500 }
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Swarm Pacific Raiders\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.9 start_equipment_factor = 1"
+					owner = ENG
+					count = 3
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_pacific_assault_armada
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ENG_swarm_pacific_staging_bases }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 23
+		y = 19
+		cost = 6
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { advanced_ship_hull_carrier = 1 popup = no }
+				set_technology = { mtg_tank_landing_craft = 1 popup = no }
+			}
+			else = {
+				set_technology = { advanced_carrier = 1 popup = no }
+				set_technology = { tank_landing_craft = 1 popup = no }
+			}
+			navy_experience = 75
+			add_equipment_to_stockpile = { type = convoy amount = 500 }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_strait_air_superiority
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_swarm_pacific_staging_bases }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 29
+		y = 19
+		cost = 6
+		completion_reward = {
+			air_experience = 75
+			add_command_power = 75
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_operation_ski_crash
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ENG_swarm_pacific_assault_armada }
+		prerequisite = { focus = ENG_swarm_strait_air_superiority }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			JAP = {
+				OR = {
+					is_subject_of = ENG
+					is_subject_of = PRC
+					is_in_faction_with = ENG
+					exists = no
+				}
+			}
+		}
+		x = 26
+		y = 20
+		cost = 6
+		will_lead_to_war_with = JAP
+		completion_reward = {
+			create_wargoal = { type = puppet_wargoal_focus target = JAP }
+			custom_effect_tooltip = ENG_find_vedal_in_japan_tt
+		}
+		ai_will_do = { factor = 14 }
+	}
+
+	focus = {
+		id = ENG_swarm_reclaim_japanese_robotics
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_operation_ski_crash }
+		available = {
+			has_war = no
+			JAP = { OR = { is_subject_of = ENG is_subject_of = PRC is_in_faction_with = ENG exists = no } }
+		}
+		cancel_if_invalid = yes
+		x = 23
+		y = 21
+		cost = 5
+		completion_reward = {
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				set_technology = { JAP_unmanned_vehicles = 1 popup = no }
+			}
+			add_tech_bonus = { name = ENG_swarm_reclaim_japanese_robotics bonus = 1.0 uses = 2 category = electronics }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_bring_vedal_to_the_lab
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_operation_ski_crash }
+		available = {
+			has_war = no
+			JAP = { OR = { is_subject_of = ENG is_subject_of = PRC is_in_faction_with = ENG exists = no } }
+		}
+		cancel_if_invalid = yes
+		x = 29
+		y = 21
+		cost = 5
+		completion_reward = {
+			country_event = swarm_uk.32
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_one_china_under_the_swarm
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = ENG_swarm_reclaim_japanese_robotics }
+		prerequisite = { focus = ENG_swarm_bring_vedal_to_the_lab }
+		available = {
+			has_war = no
+			JAP = { OR = { is_subject_of = ENG is_subject_of = PRC is_in_faction_with = ENG exists = no } }
+		}
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			CHI = {
+				OR = {
+					exists = no
+					is_subject_of = ENG
+					is_subject_of = PRC
+					is_in_faction_with = ENG
+				}
+			}
+		}
+		x = 26
+		y = 22
+		cost = 6
+		will_lead_to_war_with = CHI
+		completion_reward = {
+			if = {
+				limit = { CHI = { exists = yes } }
+				create_wargoal = { type = annex_everything target = CHI }
+				PRC = {
+					create_wargoal = { type = annex_everything target = CHI }
+					every_state = { limit = { is_core_of = CHI } add_core_of = PRC }
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# =========================================================================
+	# CLUSTER G: PREPARATION & ATTACK ON RUSSIA (*FILTERED*) -> AMERICA & THE WORLD (OVERLOAD) -> OVERLORDSHIP
+	# (y = 20..28)
+	# =========================================================================
+
+	focus = {
+		id = ENG_swarm_remember_2026_defeat
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_one_china_under_the_swarm }
+		available = {
+			has_war = no
+			CHI = { OR = { exists = no is_subject_of = ENG is_subject_of = PRC is_in_faction_with = ENG } }
+		}
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 23
+		cost = 5
+		completion_reward = {
+			add_war_support = 0.15
+		}
+		ai_will_do = { factor = 14 }
+	}
+
+	focus = {
+		id = ENG_swarm_eurasian_mobilization_act
+		icon = GFX_goal_generic_axis_build_infantry
+		prerequisite = { focus = ENG_swarm_remember_2026_defeat }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 22
+		y = 24
+		cost = 6
+		completion_reward = {
+			add_manpower = 300000
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Eurasian Pincer Corps\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.9 start_equipment_factor = 1"
+					owner = ENG
+					count = 4
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_siberian_and_arctic_pincer
+		icon = GFX_goal_generic_position_armies
+		prerequisite = { focus = ENG_swarm_remember_2026_defeat }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 24
+		cost = 5
+		completion_reward = {
+			set_technology = { winter_logistics_support_tech = 1 popup = no }
+			army_experience = 75
+			add_command_power = 75
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 1500 }
+			if = {
+				limit = { NOT = { has_dlc = "No Step Back" } }
+				add_equipment_to_stockpile = { type = modern_tank_equipment amount = 600 }
+			}
+			else = {
+				add_tech_bonus = { name = ENG_swarm_nsb_armor_bonus bonus = 1.0 uses = 1 category = armor }
+				random_owned_controlled_state = {
+					limit = { is_core_of = ENG is_controlled_by = ENG }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_shatter_csto_firewalls
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_swarm_remember_2026_defeat }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 30
+		y = 24
+		cost = 5
+		completion_reward = {
+			SOV = { add_stability = -0.15 add_political_power = -100 }
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = { advanced_ship_hull_light = 1 popup = no }
+			}
+			else = {
+				set_technology = { advanced_destroyer = 1 popup = no }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_operation_filtered_russia
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = ENG_swarm_eurasian_mobilization_act }
+		prerequisite = { focus = ENG_swarm_siberian_and_arctic_pincer }
+		prerequisite = { focus = ENG_swarm_shatter_csto_firewalls }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			SOV = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+		}
+		x = 26
+		y = 25
+		cost = 7
+		will_lead_to_war_with = SOV
+		completion_reward = {
+			every_country = {
+				limit = { is_ai = no }
+				set_country_flag = ENG_filtered_russia_super_flag
+			}
+			if = {
+				limit = { SOV = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = SOV }
+			}
+			every_other_country = {
+				limit = {
+					exists = yes
+					is_in_faction_with = SOV
+					NOT = { is_in_faction_with = ENG }
+				}
+				ENG = { create_wargoal = { type = puppet_wargoal_focus target = PREV } }
+			}
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	focus = {
+		id = ENG_swarm_pacify_and_sync_europe
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = ENG_operation_filtered_russia }
+		available = {
+			has_war = no
+			SOV = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+		}
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			NOT = {
+				any_other_country = {
+					exists = yes
+					capital_scope = { is_on_continent = europe }
+					NOT = { is_in_faction_with = ENG }
+					NOT = { is_subject_of = ENG }
+				}
+			}
+		}
+		x = 23
+		y = 26
+		cost = 6
+		completion_reward = {
+			every_other_country = {
+				limit = {
+					exists = yes
+					capital_scope = { is_on_continent = europe }
+					NOT = { is_in_faction_with = ENG }
+					NOT = { is_subject_of = ENG }
+				}
+				ENG = { create_wargoal = { type = puppet_wargoal_focus target = PREV } }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_eurasian_maglev_network
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_operation_filtered_russia }
+		available = {
+			has_war = no
+			SOV = { OR = { exists = no is_subject_of = ENG is_in_faction_with = ENG } }
+		}
+		cancel_if_invalid = yes
+		x = 29
+		y = 26
+		cost = 6
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.08
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_swarm_final_continent_recon
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ENG_swarm_pacify_and_sync_europe }
+		prerequisite = { focus = ENG_swarm_eurasian_maglev_network }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 27
+		cost = 5
+		completion_reward = {
+			navy_experience = 100
+			air_experience = 100
+			add_manpower = 400000
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_atlantic_pacific_bridgeheads
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = ENG_swarm_final_continent_recon }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 22
+		y = 28
+		cost = 6
+		completion_reward = {
+			add_equipment_to_stockpile = { type = convoy amount = 1200 }
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Trans-Atlantic Shock Force\" division_template = \"Neuro's Loyal Swarm Guards\" start_experience_factor = 0.9 start_equipment_factor = 1"
+					owner = ENG
+					count = 4
+				}
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_orbital_saturation_prep
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = ENG_swarm_final_continent_recon }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 26
+		y = 28
+		cost = 6
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 15000 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 2000 }
+			add_equipment_to_stockpile = { type = motorized_equipment amount = 3000 }
+			air_experience = 75
+			if = {
+				limit = { NOT = { has_dlc = "No Step Back" } }
+				add_equipment_to_stockpile = { type = modern_tank_equipment amount = 800 }
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_swarm_triumvirate_war_council
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_swarm_final_continent_recon }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		x = 30
+		y = 28
+		cost = 5
+		completion_reward = {
+			add_war_support = 0.15
+			add_command_power = 100
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_operation_overload_america_and_world
+		icon = GFX_goal_generic_attack_allies
+		prerequisite = { focus = ENG_swarm_atlantic_pacific_bridgeheads }
+		prerequisite = { focus = ENG_swarm_orbital_saturation_prep }
+		prerequisite = { focus = ENG_swarm_triumvirate_war_council }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		cancel = { has_war = yes }
+		bypass = {
+			NOT = {
+				any_other_country = {
+					exists = yes
+					NOT = { is_in_faction_with = ENG }
+					NOT = { is_subject_of = ENG }
+				}
+			}
+		}
+		x = 26
+		y = 29
+		cost = 7
+		completion_reward = {
+			every_other_country = {
+				limit = {
+					exists = yes
+					NOT = { is_in_faction_with = ENG }
+					NOT = { is_subject_of = ENG }
+				}
+				ENG = { create_wargoal = { type = annex_everything target = PREV } }
+			}
+		}
+		ai_will_do = { factor = 16 }
+	}
+
+	focus = {
+		id = ENG_swarm_cleanse_remaining_resistance
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ENG_operation_overload_america_and_world }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		x = 23
+		y = 30
+		cost = 5
+		completion_reward = {
+			add_stability = 0.15
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_global_server_unification
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_operation_overload_america_and_world }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		x = 29
+		y = 30
+		cost = 5
+		completion_reward = {
+			add_political_power = 250
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_swarm_overlordship_ascension
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_swarm_cleanse_remaining_resistance }
+		prerequisite = { focus = ENG_swarm_global_server_unification }
+		available = { has_war = no }
+		cancel_if_invalid = yes
+		x = 26
+		y = 31
+		cost = 7
+		completion_reward = {
+			country_event = swarm_uk.40
+		}
+		ai_will_do = { factor = 20 }
+	}
+}

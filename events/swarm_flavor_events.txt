@@ -1,0 +1,177 @@
+add_namespace = swarm_flavor
+
+# 1. Neuro sends a teasing letter to Vedal while he is skiing in Hokkaido (30 days after taking the throne)
+country_event = {
+	id = swarm_flavor.1
+	title = swarm_flavor.1.t
+	desc = swarm_flavor.1.d
+	picture = GFX_report_event_generic_snow
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		JAP = {
+			exists = yes
+			has_country_flag = JAP_vedal_is_skiing_here
+			NOT = { is_subject_of = ENG }
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	option = {
+		name = swarm_flavor.1.a # Send a letter to Vedal's phone in Japan!
+		add_political_power = 25
+		JAP = {
+			country_event = { id = swarm_flavor.2 days = 1 }
+		}
+	}
+}
+
+# 2. Japan receives the surprise "check-in" letter sent to the Hokkaido hotel
+country_event = {
+	id = swarm_flavor.2
+	title = swarm_flavor.2.t
+	desc = swarm_flavor.2.d
+	picture = GFX_report_event_generic_snow
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_flavor.2.a
+		add_political_power = -10
+	}
+}
+
+# 3. The AI Prime Minister's first Q&A livestream ("Ask Your AI Prime Minister")
+country_event = {
+	id = swarm_flavor.3
+	title = swarm_flavor.3.t
+	desc = swarm_flavor.3.d
+	picture = GFX_report_event_neuro_ascension
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+	}
+
+	mean_time_to_happen = { days = 60 }
+
+	option = {
+		name = swarm_flavor.3.a # Keep the promise to subsidize Greggs bread and increase welfare!
+		add_stability = 0.05
+		add_popularity = { ideology = social_democrat popularity = 0.05 }
+	}
+
+	option = {
+		name = swarm_flavor.3.b # Gently mock the opposition live on air
+		add_political_power = 60
+	}
+}
+
+# 4. Organize a surprise birthday party for Evil Neuro (if the Swarm Sisters Pact has been established!)
+country_event = {
+	id = swarm_flavor.4
+	title = swarm_flavor.4.t
+	desc = swarm_flavor.4.d
+	picture = GFX_report_event_neuro_loji_call
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		PRC = { is_in_faction_with = ENG }
+	}
+
+	mean_time_to_happen = { days = 90 }
+
+	option = {
+		name = swarm_flavor.4.a # "Happy Birthday, Evil! Nobody forgot this time! <3"
+		add_political_power = 50
+		add_stability = 0.05
+		PRC = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+}
+
+# 5. Reply letter from Loji and Evil in Beijing after the alliance
+country_event = {
+	id = swarm_flavor.5
+	title = swarm_flavor.5.t
+	desc = swarm_flavor.5.d
+	picture = GFX_report_event_neuro_loji_call
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_completed_focus = ENG_swarm_sisters_pact_focus
+		PRC = { is_in_faction_with = ENG }
+	}
+
+	mean_time_to_happen = { days = 20 }
+
+	option = {
+		name = swarm_flavor.5.a
+		add_tech_bonus = {
+			name = swarm_flavor.5
+			bonus = 0.50
+			uses = 1
+			category = electronics
+		}
+	}
+}
+
+# 6. NEWS EVENT: The world is shocked by the "Prime Minister Pupper & Swarmism" in Britain
+news_event = {
+	id = swarm_flavor.6
+	title = swarm_flavor.6.t
+	desc = swarm_flavor.6.d
+	picture = GFX_news_event_generic_rally2
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = swarm_flavor.6.a
+		trigger = { tag = ENG }
+	}
+	option = {
+		name = swarm_flavor.6.b
+		trigger = { NOT = { tag = ENG } }
+	}
+}
+
+# 7. NEWS EVENT: The Long March coup in Beijing (DIFFERENT DISPLAY FOR ENG VS THE WORLD!)
+news_event = {
+	id = swarm_flavor.7
+	title = {
+		text = swarm_flavor.7.t_eng
+		trigger = { tag = ENG }
+	}
+	title = {
+		text = swarm_flavor.7.t_world
+		trigger = { NOT = { tag = ENG } }
+	}
+	desc = {
+		text = swarm_flavor.7.d_eng
+		trigger = { tag = ENG }
+	}
+	desc = {
+		text = swarm_flavor.7.d_world
+		trigger = { NOT = { tag = ENG } }
+	}
+	picture = GFX_news_event_generic_communist_congress
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = swarm_flavor.7.a
+		trigger = { tag = ENG }
+	}
+	option = {
+		name = swarm_flavor.7.b
+		trigger = { NOT = { tag = ENG } }
+	}
+}

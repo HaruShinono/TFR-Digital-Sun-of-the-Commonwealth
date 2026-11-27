@@ -1,0 +1,86 @@
+leader_traits = {
+	ENG_swarm_overlord_trait = {
+		random = no
+		political_power_factor = 0.15
+		research_speed_factor = 0.10
+		production_speed_buildings_factor = 0.10
+		social_democrat_drift = 0.05
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	ENG_transhuman_evil_trait = {
+		random = no
+		army_attack_factor = 0.10
+		justify_war_goal_time = -0.25
+		stability_factor = -0.05
+		totalitarian_socialist_drift = 0.05
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	ENG_green_programmer_trait = {
+		random = no
+		consumer_goods_factor = -0.05
+		production_factory_max_efficiency_factor = 0.10
+		political_power_factor = -0.10
+		social_liberal_drift = 0.05
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	ENG_swarm_triumvirate_trait = {
+		random = no
+		political_power_factor = 0.25
+		research_speed_factor = 0.20
+		industrial_capacity_factory = 0.20
+		army_attack_factor = 0.15
+		compliance_growth = 0.30
+		ai_will_do = { factor = 1 }
+	}
+	ENG_neuro_civic_unifier_trait = {
+		random = no
+		stability_factor = 0.10
+		compliance_growth = 0.15
+		resistance_growth = -0.15
+		ai_will_do = { factor = 1 }
+	}
+
+	ENG_neuro_economic_architect_trait = {
+		random = no
+		industrial_capacity_factory = 0.10
+		production_speed_buildings_factor = 0.10
+		consumer_goods_factor = -0.05
+		ai_will_do = { factor = 1 }
+	}
+
+	ENG_neuro_naval_supremacist_trait = {
+		random = no
+		industrial_capacity_dockyard = 0.15
+		amphibious_invasion = 0.15
+		naval_invasion_capacity = 10
+		ai_will_do = { factor = 1 }
+	}
+
+	ENG_neuro_supreme_strategist_trait = {
+		random = no
+		army_attack_factor = 0.10
+		army_org_factor = 0.10
+		planning_speed = 0.20
+		justify_war_goal_time = -0.25
+		ai_will_do = { factor = 1 }
+	}
+	ENG_cerber_good_girl_trait = {
+		random = no
+		stability_factor = 0.08
+		political_power_factor = 0.10
+		society_development_monthly = 0.015
+		war_support_factor = 0.05
+		ai_will_do = { factor = 1 }
+	}
+}

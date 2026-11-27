@@ -1,0 +1,456 @@
+ENG_swarm_superweapon_category = {
+
+	# =========================================================
+	# 0. PROJECT MOBILE SUIT: GUNDAM (After 1 years puppeted JAP)
+	# =========================================================
+	ENG_project_gundam_mission = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 210
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_gundam_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				set_country_flag = PRC_Gundam
+				set_technology = { PRC_Gundam = 1 popup = no }
+				add_ideas = ENG_swarm_gundam_corps_idea
+			}
+			division_template = {
+				name = "Swarm Gundam Corps"
+				priority = 2
+				regiments = {
+					PRC_Gundam_DF_41 = { x = 0 y = 0 }
+					PRC_Gundam_DF_41 = { x = 0 y = 1 }
+					PRC_Gundam_DF_41 = { x = 1 y = 0 }
+					PRC_Gundam_DF_41 = { x = 1 y = 1 }
+				}
+			}
+			if = {
+				limit = { NOT = { has_dlc = "No Step Back" } }
+				add_equipment_production = {
+					equipment = { type = PRC_Gundam_equipment_1 creator = "ENG" }
+					requested_factories = 5
+					progress = 0.5
+					amount = 100
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Swarm Mobile Suit Wing\" division_template = \"Swarm Gundam Corps\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ENG
+					count = 4
+				}
+			}
+		}
+	}
+
+	ENG_start_gundam_project_dec = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_gundam_rd
+			NOT = { has_active_mission = ENG_project_gundam_mission }
+			NOT = { has_country_flag = ENG_gundam_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 35
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_gundam_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_gundam_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_gundam_mission }
+			NOT = { has_country_flag = swarm_contributed_gundam }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 15
+		complete_effect = {
+			set_country_flag = swarm_contributed_gundam
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_gundam_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_deploy_more_gundams_dec = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_gundam_completed }
+		available = { has_manpower > 1000 }
+		cost = 25
+		days_re_enable = 60
+		complete_effect = {
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Swarm Reserve Gundam Wing\" division_template = \"Swarm Gundam Corps\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = ENG
+					count = 2
+				}
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	# =========================================================
+	# 1. PROJECT DRONE SWARM (PRC_drone_swarm)
+	# =========================================================
+	ENG_project_drone_swarm_mission = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_drone_swarm_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				set_technology = { PRC_drone_swarm = 1 popup = no }
+			}
+			custom_effect_tooltip = ENG_drone_swarm_unlock_tt
+		}
+	}
+
+	ENG_start_drone_swarm_project_dec = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_drone_swarm_rd
+			NOT = { has_active_mission = ENG_project_drone_swarm_mission }
+			NOT = { has_country_flag = ENG_drone_swarm_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 25
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_drone_swarm_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_drone_swarm_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_drone_swarm_mission }
+			NOT = { has_country_flag = swarm_contributed_drone_swarm }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 15
+		complete_effect = {
+			set_country_flag = swarm_contributed_drone_swarm
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_drone_swarm_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	# =========================================================
+	# 2. PROJECT QTS-14
+	# =========================================================
+	ENG_project_qts14_mission = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_qts14_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				set_technology = { PRC_qts_14_nib = 1 popup = no }
+				add_equipment_to_stockpile = { type = infantry_equipment amount = 10000 }
+			}
+			
+			add_equipment_production = {
+				equipment = { type = PRC_qts_14_nib creator = "ENG" }
+				requested_factories = 5
+				progress = 0.2
+				amount = 5000
+			}
+		}
+	}
+
+	ENG_start_qts14_project_dec = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_qts14_rd
+			NOT = { has_active_mission = ENG_project_qts14_mission }
+			NOT = { has_country_flag = ENG_qts14_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 25
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_qts14_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_qts14_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_qts14_mission }
+			NOT = { has_country_flag = swarm_contributed_qts14 }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 15
+		complete_effect = {
+			set_country_flag = swarm_contributed_qts14
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_qts14_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	# =========================================================
+	# 3. PROJECT SPACE MARINES 
+	# =========================================================
+	ENG_project_space_marines_mission = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 210
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_space_marines_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				set_technology = { space_marines_infantry = 1 popup = no }
+				add_ideas = ENG_swarm_space_marines_idea
+			}
+
+			add_equipment_production = {
+				equipment = { type = power_armor_equipment_0 creator = "ENG" }
+				requested_factories = 5
+				progress = 0.5
+				amount = 1000
+			}
+			add_equipment_production = {
+				equipment = { type = heavy_infantry_equipment_0 creator = "ENG" }
+				requested_factories = 5
+				progress = 0.5
+				amount = 1000
+			}
+			division_template = {
+				name = "Swarm Space Marines"
+				priority = 2
+				regiments = {
+					space_marines = { x = 0 y = 0 }
+					space_marines = { x = 0 y = 1 }
+					space_marines = { x = 1 y = 0 }
+					space_marines = { x = 1 y = 1 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Swarm Astartes Chapter\" division_template = \"Swarm Space Marines\" start_experience_factor = 0.9 start_equipment_factor = 1"
+					owner = ENG
+					count = 4
+				}
+			}
+		}
+	}
+
+	ENG_start_space_marines_project_dec = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_space_marines_rd
+			NOT = { has_active_mission = ENG_project_space_marines_mission }
+			NOT = { has_country_flag = ENG_space_marines_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 35
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_space_marines_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_space_marines_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_space_marines_mission }
+			NOT = { has_country_flag = swarm_contributed_space_marines }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 20
+		complete_effect = {
+			set_country_flag = swarm_contributed_space_marines
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_space_marines_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_deploy_more_space_marines_dec = {
+		icon = generic_army_support
+		allowed = { original_tag = ENG }
+		visible = { has_country_flag = ENG_space_marines_completed }
+		available = { has_manpower > 2000 }
+		cost = 25
+		days_re_enable = 60
+		complete_effect = {
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Swarm Astartes Chapter\" division_template = \"Swarm Space Marines\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+					owner = ENG
+					count = 2
+				}
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	# =========================================================
+	# 4. PROJECT STARLIGHT: ORBITAL PING LASER
+	# =========================================================
+	ENG_project_starlight_mission = {
+		icon = generic_air
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_starlight_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				add_ideas = ENG_swarm_orbital_ping_laser_idea
+			}
+		}
+	}
+
+	ENG_start_starlight_project_dec = {
+		icon = generic_air
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_starlight_rd
+			NOT = { has_active_mission = ENG_project_starlight_mission }
+			NOT = { has_country_flag = ENG_starlight_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 30
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_starlight_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_starlight_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_starlight_mission }
+			NOT = { has_country_flag = swarm_contributed_starlight }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 15
+		complete_effect = {
+			set_country_flag = swarm_contributed_starlight
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_starlight_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	# =========================================================
+	# 5. PROJECT HARPOON: ORBITAL KINETIC RODS
+	# =========================================================
+	ENG_project_harpoon_mission = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = ENG }
+		available = { always = no }
+		activation = { always = no }
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = ENG_harpoon_completed
+			every_country = {
+				limit = { OR = { tag = ENG is_in_faction_with = ENG } }
+				add_ideas = ENG_swarm_harpoon_kinetic_idea
+			}
+		}
+	}
+
+	ENG_start_harpoon_project_dec = {
+		icon = generic_ignite_civil_war
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_unlocked_harpoon_rd
+			NOT = { has_active_mission = ENG_project_harpoon_mission }
+			NOT = { has_country_flag = ENG_harpoon_completed }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 30
+		complete_effect = {
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			activate_mission = ENG_project_harpoon_mission
+		}
+		ai_will_do = { factor = 100 }
+	}
+
+	ENG_assist_harpoon_project_dec = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			NOT = { tag = ENG }
+			is_in_faction_with = ENG
+			ENG = { has_active_mission = ENG_project_harpoon_mission }
+			NOT = { has_country_flag = swarm_contributed_harpoon }
+		}
+		available = { num_of_military_factories > 4 }
+		cost = 15
+		complete_effect = {
+			set_country_flag = swarm_contributed_harpoon
+			add_timed_idea = { idea = ENG_swarm_5_mil_contribution_idea days = 90 }
+			ENG = {
+				add_days_mission_timeout = { mission = ENG_project_harpoon_mission days = -30 }
+			}
+		}
+		ai_will_do = { factor = 100 }
+	}
+}

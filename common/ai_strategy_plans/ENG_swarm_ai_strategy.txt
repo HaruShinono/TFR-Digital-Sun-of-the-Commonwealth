@@ -1,0 +1,41 @@
+ENG_neuro_automated_production_and_training = {
+	allowed = {
+		OR = {
+			original_tag = ENG
+			original_tag = PRC
+			original_tag = JAP
+		}
+	}
+	enable = {
+		OR = {
+			has_country_flag = ENG_neuro_victory_flag
+			is_in_faction_with = ENG
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 50
+	}
+	ai_strategy = {
+		type = template_prio
+		id = space_marines
+		value = 200
+	}
+	ai_strategy = {
+		type = template_prio
+		id = medium_armor
+		value = 150
+	}
+	ai_strategy = {
+		type = force_build_armies
+		value = 100
+	}
+}

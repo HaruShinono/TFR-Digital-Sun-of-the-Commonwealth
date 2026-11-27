@@ -1,0 +1,23 @@
+ideas = {
+	country = {
+		PRC_evil_will_prevail = {
+			picture = PRC_evil_will_prevail_icon
+			allowed = {
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			
+			modifier = {
+				research_speed_factor = 0.15
+				political_power_gain = -0.1
+				poverty_development_monthly = 0.02
+				society_development_monthly = 0.02
+				totalitarian_socialist_drift = +0.03
+				stability_weekly = 0.005
+			}
+		}
+	}
+}

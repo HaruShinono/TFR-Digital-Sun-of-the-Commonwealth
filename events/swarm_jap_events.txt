@@ -1,0 +1,15 @@
+add_namespace = swarm_jap
+
+country_event = {
+	id = swarm_jap.1
+	title = swarm_jap.1.t
+	desc = swarm_jap.1.d
+	picture = GFX_report_event_generic_snow
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_jap.1.a
+		set_country_flag = JAP_vedal_is_skiing_here
+		add_political_power = 15
+	}
+}

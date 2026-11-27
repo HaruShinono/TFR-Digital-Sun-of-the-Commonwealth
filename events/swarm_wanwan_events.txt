@@ -1,0 +1,18 @@
+add_namespace = wanwan
+
+country_event = {
+	id = wanwan.1
+	title = wanwan.1.t
+	desc = wanwan.1.d
+	picture = GFX_report_event_cerber_wanwan
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = wanwan.1.a # "Wan wan!"
+		set_country_flag = ENG_cerber_pm_locked
+		add_ideas = ENG_cerber_the_dog_hog
+		add_stability = 0.05
+		custom_effect_tooltip = wanwan_cerber_locked_tt
+	}
+}

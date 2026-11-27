@@ -1,0 +1,575 @@
+ideas = {
+	country = {
+		# =========================================================
+		# I. Rebel, Covid, Collape
+		# =========================================================
+		ENG_tfr_supply_chain_paralysis = {
+			picture = ENG_eu_gambit
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_factory_max_efficiency_factor = -0.10
+				industrial_capacity_factory = -0.10
+				consumer_goods_factor = 0.08
+				industrial_development_monthly = -0.015
+			}
+		}
+
+		ENG_tfr_furlough_debt_spiral = {
+			picture = ENG_systemic_poverty
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.12
+				income_growth_factor = -0.15
+				political_power_gain = -0.10
+				poverty_development_monthly = 0.01
+			}
+		}
+
+		ENG_tfr_vaccine_rollout_idea = {
+			picture = ENG_nhs_timebomb
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				monthly_population = 0.15
+				stability_weekly = 0.004
+				society_development_monthly = 0.015
+			}
+		}
+
+		ENG_tfr_eroding_westminster_1 = {
+			picture = ENG_sun_sets
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.08
+				political_power_gain = -0.15
+				drift_defence_factor = -0.15
+				society_development_monthly = -0.01
+			}
+		}
+
+		ENG_tfr_eroding_westminster_2 = {
+			picture = ENG_sun_sets
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.15
+				political_power_gain = -0.30
+				drift_defence_factor = -0.25
+				income_growth_factor = -0.10
+				society_development_monthly = -0.02
+			}
+		}
+
+		ENG_tfr_eroding_westminster_3 = {
+			picture = ENG_sun_sets
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.22
+				political_power_gain = -0.45
+				war_support_factor = -0.10
+				drift_defence_factor = -0.35
+				income_growth_factor = -0.15
+				society_development_monthly = -0.025
+			}
+		}
+
+		ENG_tfr_cost_of_living_crisis = {
+			picture = ENG_systemic_poverty
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.10
+				consumer_goods_factor = 0.10
+				personal_value_factor = -0.10
+				poverty_development_monthly = -0.02
+				libertarian_socialist_drift = 0.02
+				authoritarian_democrat_drift = 0.02
+			}
+		}
+
+		ENG_tfr_general_strikes_wave = {
+			picture = ENG_systemic_poverty
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_factory = -0.15
+				production_speed_buildings_factor = -0.15
+				supply_consumption_factor = 0.10
+				stability_weekly = -0.005
+			}
+		}
+
+		ENG_tfr_scottish_secession_pressure = {
+			picture = SCO_popular_independence
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				political_power_factor = -0.10
+				stability_factor = -0.05
+				conscription_factor = -0.05
+			}
+		}
+
+		# =========================================================
+		# CỤM II: Stabilize
+		# =========================================================
+		ENG_tfr_small_boats_crisis = {
+			picture = ENG_eu_gambit
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.08
+				political_power_gain = -0.10
+				authoritarian_democrat_drift = 0.03
+				nationalist_drift = 0.02
+			}
+		}
+
+		ENG_tfr_rwanda_scheme_backlash = {
+			picture = ENG_reform_democracy_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				political_power_gain = -0.15
+				consumer_goods_factor = 0.05
+				opinion_gain_monthly = -0.15
+				stability_factor = -0.05
+			}
+		}
+
+		ENG_tfr_channel_border_command = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.05
+				drift_defence_factor = 0.15
+				intel_network_gain_factor = 0.10
+			}
+		}
+
+		ENG_tfr_civil_unrest_riots = {
+			picture = SCO_royalist_bombing
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = -0.15
+				production_speed_buildings_factor = -0.10
+				army_morale_factor = -0.05
+				society_development_monthly = -0.02
+			}
+		}
+
+		ENG_tfr_public_order_act_idea = {
+			picture = ENG_all_for_farage_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.08
+				resistance_growth = -0.15
+				resistance_damage_to_garrison = -0.15
+				political_power_factor = 0.05
+				society_development_monthly = -0.005
+			}
+		}
+
+		ENG_tfr_community_reconciliation_idea = {
+			picture = ENG_reform_democracy_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.05
+				society_development_monthly = 0.015
+				poverty_development_monthly = 0.01
+				consumer_goods_factor = 0.05
+			}
+		}
+
+		# =========================================================
+		# III. Infarstructures
+		# =========================================================
+		ENG_tfr_productivity_drive_idea = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.08
+				industrial_development_monthly = 0.01
+			}
+		}
+
+		ENG_tfr_city_of_london_deregulation = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				income_growth_factor = 0.12
+				consumer_goods_factor = -0.05
+				trade_opinion_factor = 0.15
+				personal_value_factor = 0.05
+			}
+		}
+
+		ENG_tfr_northern_industrial_revival = {
+			picture = ENG_albion_union_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_speed_industrial_complex_factor = 0.12
+				production_speed_infrastructure_factor = 0.12
+				industrial_development_monthly = 0.02
+				poverty_development_monthly = 0.015
+			}
+		}
+
+		ENG_tfr_high_speed_rail_network = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_speed_infrastructure_factor = 0.15
+				supply_consumption_factor = -0.05
+				industrial_capacity_factory = 0.05
+			}
+		}
+
+		ENG_tfr_north_sea_energy_boom = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				local_resources_factor = 0.15
+				production_factory_max_efficiency_factor = 0.05
+				industrial_development_monthly = 0.015
+			}
+		}
+
+		ENG_tfr_british_steel_shield = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_speed_arms_factory_factor = 0.10
+				production_speed_dockyard_factor = 0.10
+				local_resources_factor = 0.10
+			}
+		}
+
+		ENG_tfr_russell_group_rd_idea = {
+			picture = ENG_reform_democracy_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				research_speed_factor = 0.08
+				scientist_xp_gain_factor = 0.15
+			}
+		}
+
+		ENG_tfr_digital_whitehall_contracts = {
+			picture = ENG_reform_democracy_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				political_power_factor = 0.05
+				research_speed_factor = 0.05
+				society_development_monthly = 0.01
+			}
+		}
+
+		# =========================================================
+		# IV: Royal and Inner Circle
+		# =========================================================
+		ENG_tfr_crown_constitutional_anchor = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.06
+				political_power_gain = 0.10
+				drift_defence_factor = 0.15
+			}
+		}
+
+		ENG_tfr_crown_active_prerogative = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				war_support_factor = 0.06
+				political_power_factor = 0.12
+				nationalist_drift = 0.02
+				conservative_drift = 0.02
+			}
+		}
+
+		ENG_tfr_royal_charles_harmony = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				society_development_monthly = 0.015
+				consumer_goods_factor = -0.04
+			}
+		}
+
+		ENG_tfr_royal_anne_logistics = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				supply_consumption_factor = -0.08
+				army_org_factor = 0.05
+			}
+		}
+
+		ENG_tfr_royal_william_veterans = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				war_support_factor = 0.05
+				army_morale_factor = 0.08
+				experience_gain_army = 0.05
+			}
+		}
+
+		ENG_tfr_royal_edward_enterprise = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.08
+				research_speed_factor = 0.03
+			}
+		}
+
+		ENG_tfr_royal_philip_legacy = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.05
+				scientist_xp_gain_factor = 0.10
+			}
+		}
+
+		ENG_tfr_royal_charitable_shield = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				poverty_development_monthly = 0.015
+				stability_factor = 0.04
+			}
+		}
+
+		# =========================================================
+		# V: Diplomacy Eurasian
+		# =========================================================
+		ENG_tfr_ukrainian_training_mission = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				experience_gain_army = 0.08
+				command_power_gain = 0.10
+				send_volunteers_tension = -0.25
+				send_volunteer_size = 2
+			}
+		}
+
+		ENG_tfr_jef_northern_shield = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				navy_org_factor = 0.05
+				amphibious_invasion = 0.10
+				army_attack_factor = 0.04
+			}
+		}
+
+		ENG_tfr_indo_pacific_tilt_idea = {
+			picture = ENG_commonwealth_of_nations_leader
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				navy_max_range_factor = 0.20
+				trade_opinion_factor = 0.15
+				send_volunteer_size = 2
+			}
+		}
+
+		ENG_tfr_cptpp_trade_boost = {
+			picture = ENG_reform_economics_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				income_growth_factor = 0.08
+				min_export = 0.05
+				trade_opinion_factor = 0.15
+			}
+		}
+
+		ENG_tfr_aukus_tech_accord = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_dockyard = 0.10
+				military_development_monthly = 0.01
+			}
+		}
+
+		ENG_tfr_gcap_japan_alliance_idea = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				air_superiority_efficiency = 0.08
+				research_speed_factor = 0.04
+			}
+		}
+
+		# =========================================================
+		# CỤM VI: Reinforce Military
+		# =========================================================
+		ENG_tfr_coastal_command_idea = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_core_defence_factor = 0.12
+				special_forces_cap = 0.10
+				amphibious_invasion = 0.15
+			}
+		}
+
+		ENG_tfr_global_expeditionary_idea = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				send_volunteer_size = 3
+				army_attack_factor = 0.06
+				navy_max_range_factor = 0.15
+			}
+		}
+
+		ENG_tfr_national_service_scheme = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				conscription_factor = 0.15
+				training_time_factor = -0.10
+				war_support_factor = 0.05
+			}
+		}
+
+		ENG_tfr_reformed_british_army_1 = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.05
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
+			}
+		}
+
+		ENG_tfr_reformed_british_army_2 = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.10
+				army_attack_factor = 0.08
+				army_defence_factor = 0.08
+				supply_consumption_factor = -0.05
+				military_development_monthly = 0.015
+			}
+		}
+
+		ENG_tfr_royal_navy_revival_1 = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_dockyard = 0.10
+				navy_org_factor = 0.05
+			}
+		}
+
+		ENG_tfr_royal_navy_revival_2 = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_dockyard = 0.20
+				navy_org_factor = 0.10
+				naval_hit_chance = 0.08
+				navy_max_range_factor = 0.15
+			}
+		}
+
+		ENG_tfr_raf_dominance_1 = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				air_superiority_efficiency = 0.08
+				air_ace_generation_chance_factor = 0.10
+			}
+		}
+
+		ENG_tfr_raf_dominance_2 = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				air_superiority_efficiency = 0.15
+				air_ace_generation_chance_factor = 0.20
+				air_cas_efficiency = 0.12
+			}
+		}
+
+		ENG_tfr_uk_space_command_idea = {
+			picture = ENG_nato_leadership
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				encryption_factor = 0.15
+				decryption_factor = 0.15
+				research_speed_factor = 0.04
+			}
+		}
+
+		ENG_tfr_bae_sovereign_base_1 = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_factory = 0.08
+				production_factory_max_efficiency_factor = 0.08
+			}
+		}
+
+		ENG_tfr_bae_sovereign_base_2 = {
+			picture = ENG_reformed_army_pride
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_factory = 0.15
+				production_factory_max_efficiency_factor = 0.15
+				line_change_production_efficiency_factor = 0.10
+				military_development_monthly = 0.02
+			}
+		}
+	}
+}

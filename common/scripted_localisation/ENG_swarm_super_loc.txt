@@ -1,0 +1,83 @@
+defined_text = {
+	name = GetSwarmSuperEventTitle
+	text = {
+		trigger = { has_country_flag = ENG_neuro_ascension_super_flag }
+		localization_key = ENG_se_neuro_ascension_title
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_neuro_pov_super_flag }
+		localization_key = ENG_se_prc_coup_neuro_title
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_world_pov_super_flag }
+		localization_key = ENG_se_prc_coup_world_title
+	}
+	text = {
+		trigger = { has_country_flag = ENG_ssw_pact_super_flag }
+		localization_key = ENG_se_ssw_pact_title
+	}
+	text = {
+		trigger = { has_country_flag = ENG_filtered_russia_super_flag }
+		localization_key = ENG_se_filtered_russia_title
+	}
+	text = {
+		trigger = { has_country_flag = ENG_overlordship_super_flag }
+		localization_key = ENG_se_overlordship_title
+	}
+}
+
+defined_text = {
+	name = GetSwarmSuperEventQuote
+	text = {
+		trigger = { has_country_flag = ENG_neuro_ascension_super_flag }
+		localization_key = ENG_se_neuro_ascension_quote
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_neuro_pov_super_flag }
+		localization_key = ENG_se_prc_coup_neuro_quote
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_world_pov_super_flag }
+		localization_key = ENG_se_prc_coup_world_quote
+	}
+	text = {
+		trigger = { has_country_flag = ENG_ssw_pact_super_flag }
+		localization_key = ENG_se_ssw_pact_quote
+	}
+	text = {
+		trigger = { has_country_flag = ENG_filtered_russia_super_flag }
+		localization_key = ENG_se_filtered_russia_quote
+	}
+	text = {
+		trigger = { has_country_flag = ENG_overlordship_super_flag }
+		localization_key = ENG_se_overlordship_quote
+	}
+}
+
+defined_text = {
+	name = GetSwarmSuperEventButton
+	text = {
+		trigger = { has_country_flag = ENG_neuro_ascension_super_flag }
+		localization_key = ENG_se_neuro_ascension_btn
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_neuro_pov_super_flag }
+		localization_key = ENG_se_prc_coup_neuro_btn
+	}
+	text = {
+		trigger = { has_country_flag = ENG_prc_coup_world_pov_super_flag }
+		localization_key = ENG_se_prc_coup_world_btn
+	}
+	text = {
+		trigger = { has_country_flag = ENG_ssw_pact_super_flag }
+		localization_key = ENG_se_ssw_pact_btn
+	}
+	text = {
+		trigger = { has_country_flag = ENG_filtered_russia_super_flag }
+		localization_key = ENG_se_filtered_russia_btn
+	}
+	text = {
+		trigger = { has_country_flag = ENG_overlordship_super_flag }
+		localization_key = ENG_se_overlordship_btn
+	}
+}

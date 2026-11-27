@@ -1,0 +1,21 @@
+PRC_forced_loji_strategy_plan = {
+	name = "PRC Forced Long March Plan"
+	desc = "AI follows Loji route due to Evil Neuro's intervention"
+
+	allowed = {
+		original_tag = PRC
+	}
+	enable = {
+		has_country_flag = PRC_forced_loji_route
+	}
+	abort = {
+		has_country_leader = {
+			character = PRC_long_march
+			ruling_only = yes
+		}
+	}
+
+	ai_national_focuses = {
+		china_new_left_focus
+	}
+}

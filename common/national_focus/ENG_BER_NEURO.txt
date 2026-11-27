@@ -1,0 +1,3340 @@
+focus_tree = {
+	id = ENG_ber_neuro_focus_tree
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			original_tag = ENG
+		}
+	}
+
+	default = no
+	continuous_focus_position = { x = 50 y = 2000 }
+
+	# =========================================================================
+	# I: COVID and WESTMINSTER COLLAPSE
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_cobra_emergency_committee
+		icon = GFX_goal_generic_national_unity
+		x = 5
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			OR = {
+				has_idea = ENG_covid_19_pandemic
+				has_idea = ENG_covid_19_pandemic_1
+				PRC = { has_active_mission = PRC_control_the_coronavirus_mission }
+				date > 2020.02.15
+			}
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			if = {
+				limit = {
+					NOT = { has_idea = ENG_covid_19_pandemic }
+					NOT = { has_idea = ENG_covid_19_pandemic_1 }
+				}
+				add_ideas = ENG_covid_19_pandemic
+			}
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	# --- Lockdown and open ---
+	focus = {
+		id = ENG_tfr_strict_national_lockdown
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = ENG_tfr_cobra_emergency_committee }
+		mutually_exclusive = { focus = ENG_tfr_keep_britain_open }
+		x = 3
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_covid_19_pandemic }
+				swap_ideas = {
+					remove_idea = ENG_covid_19_pandemic
+					add_idea = ENG_covid_19_pandemic_lockdown
+				}
+			}
+			else_if = {
+				limit = { has_idea = ENG_covid_19_pandemic_1 }
+				swap_ideas = {
+					remove_idea = ENG_covid_19_pandemic_1
+					add_idea = ENG_covid_19_pandemic_lockdown_1
+				}
+			}
+			add_ideas = ENG_tfr_supply_chain_paralysis
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_tfr_close_schools_and_highstreets
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = ENG_tfr_strict_national_lockdown }
+		x = 1
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = ENG_tfr_furlough_debt_spiral
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_nightingale_emergency_hospitals
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_strict_national_lockdown }
+		x = 3
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_struggling_health_sector_idea }
+				swap_ideas = {
+					remove_idea = ENG_struggling_health_sector_idea
+					add_idea = ENG_struggling_health_sector_idea_1
+				}
+			}
+			add_political_power = -25
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_keep_britain_open
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_cobra_emergency_committee }
+		mutually_exclusive = { focus = ENG_tfr_strict_national_lockdown }
+		x = 7
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_covid_19_pandemic }
+				swap_ideas = {
+					remove_idea = ENG_covid_19_pandemic
+					add_idea = ENG_covid_19_pandemic_reject_lockdown
+				}
+			}
+			else_if = {
+				limit = { has_idea = ENG_covid_19_pandemic_1 }
+				swap_ideas = {
+					remove_idea = ENG_covid_19_pandemic_1
+					add_idea = ENG_covid_19_pandemic_reject_lockdown_1
+				}
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_shield_the_vulnerable
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_keep_britain_open }
+		x = 7
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_political_power = 40
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_ppe_procurement_scandals
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = {
+			focus = ENG_tfr_nightingale_emergency_hospitals
+			focus = ENG_tfr_shield_the_vulnerable
+		}
+		x = 5
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = -50
+			add_ideas = ENG_tfr_eroding_westminster_1
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_tier_lockdown_restrictions
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ENG_tfr_close_schools_and_highstreets }
+		prerequisite = { focus = ENG_tfr_ppe_procurement_scandals }
+		x = 2
+		y = 3
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_eat_out_to_help_out
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_ppe_procurement_scandals }
+		prerequisite = {
+			focus = ENG_tfr_nightingale_emergency_hospitals
+			focus = ENG_tfr_shield_the_vulnerable
+		}
+		x = 6
+		y = 3
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_supply_chain_paralysis
+			add_stability = -0.03
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_oxford_vaccine_taskforce
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = {
+			focus = ENG_tfr_tier_lockdown_restrictions
+			focus = ENG_tfr_eat_out_to_help_out
+		}
+		x = 4
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			remove_ideas = {
+				ENG_covid_19_pandemic
+				ENG_covid_19_pandemic_1
+				ENG_covid_19_pandemic_lockdown
+				ENG_covid_19_pandemic_lockdown_1
+				ENG_covid_19_pandemic_reject_lockdown
+				ENG_covid_19_pandemic_reject_lockdown_1
+				ENG_covid_19_pandemic_reject_lockdown_alt
+			}
+			add_timed_idea = {
+				idea = ENG_tfr_vaccine_rollout_idea
+				days = 365
+			}
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	focus = {
+		id = ENG_tfr_nhs_backlog_crisis
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ENG_tfr_oxford_vaccine_taskforce }
+		x = 2
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = -0.04
+			if = {
+				limit = {
+					NOT = { has_idea = ENG_struggling_health_sector_idea }
+					NOT = { has_idea = ENG_struggling_health_sector_idea_1 }
+				}
+				add_ideas = ENG_struggling_health_sector_idea_1
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_long_covid_labor_shortage
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_oxford_vaccine_taskforce }
+		x = 4
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_manpower = -25000
+			add_ideas = ENG_tfr_cost_of_living_crisis
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# --- BREXIT & WESTMINSTER (2020 - 2022) ---
+	focus = {
+		id = ENG_tfr_get_brexit_done
+		icon = GFX_goal_generic_forceful_treaty
+		x = 15
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 100
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea
+					add_idea = ENG_eu_gambit_idea_1
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_tfr_hard_brexit_sovereignty
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_tfr_get_brexit_done }
+		mutually_exclusive = { focus = ENG_tfr_soft_brexit_compromise }
+		x = 11
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_1 }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_1
+					add_idea = ENG_eu_gambit_idea_hardish_brexit
+				}
+			}
+			else = { add_ideas = ENG_eu_gambit_idea_hardish_brexit }
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_global_trade_deals
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_hard_brexit_sovereignty }
+		x = 10
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_hardish_brexit }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_hardish_brexit
+					add_idea = ENG_eu_gambit_idea_hardish_brexit_1
+				}
+			}
+			add_political_power = 40
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_scrap_eu_regulations
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_global_trade_deals }
+		x = 10
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_hardish_brexit_1 }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_hardish_brexit_1
+					add_idea = ENG_eu_gambit_idea_hardish_brexit_2
+				}
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_soft_brexit_compromise
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_get_brexit_done }
+		mutually_exclusive = { focus = ENG_tfr_hard_brexit_sovereignty }
+		x = 13
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_1 }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_1
+					add_idea = ENG_eu_gambit_idea_softish_brexit
+				}
+			}
+			else = { add_ideas = ENG_eu_gambit_idea_softish_brexit }
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_northern_ireland_protocol
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_soft_brexit_compromise }
+		x = 12
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_softish_brexit }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_softish_brexit
+					add_idea = ENG_eu_gambit_idea_softish_brexit_1
+				}
+			}
+			add_stability = 0.04
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_windsor_framework
+		icon = GFX_goal_generic_treaty
+		prerequisite = { focus = ENG_tfr_northern_ireland_protocol }
+		x = 12
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_eu_gambit_idea_softish_brexit_1 }
+				swap_ideas = {
+					remove_idea = ENG_eu_gambit_idea_softish_brexit_1
+					add_idea = ENG_eu_gambit_idea_softish_brexit_3
+				}
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_post_brexit_settlement
+		icon = GFX_goal_generic_propaganda
+		prerequisite = {
+			focus = ENG_tfr_scrap_eu_regulations
+			focus = ENG_tfr_windsor_framework
+		}
+		x = 11
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = {
+				ENG_eu_gambit_idea_hardish_brexit_2
+				ENG_eu_gambit_idea_hardish_brexit_3
+				ENG_eu_gambit_idea_softish_brexit_2
+				ENG_eu_gambit_idea_softish_brexit_3
+			}
+			add_political_power = 60
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_internal_market_friction
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_get_brexit_done }
+		x = 16
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_stability = -0.03
+			add_political_power = 25
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_fishing_and_customs_disputes
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_tfr_internal_market_friction }
+		x = 15
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.03
+			FRA = { add_opinion_modifier = { target = ENG modifier = small_decrease } }
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_retained_eu_law_review
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = ENG_tfr_internal_market_friction }
+		x = 17
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# --- DECLINING POLITICAL BRANCH & POWER STRUGGLE (2022 - 2025) ---
+	focus = {
+		id = ENG_tfr_partygate_revelations
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_tfr_oxford_vaccine_taskforce }
+		prerequisite = { focus = ENG_tfr_post_brexit_settlement }
+		x = 8
+		y = 5
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_eroding_westminster_1 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_eroding_westminster_1
+					add_idea = ENG_tfr_eroding_westminster_2
+				}
+			}
+			else = { add_ideas = ENG_tfr_eroding_westminster_2 }
+			add_stability = -0.05
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_tfr_energy_bills_explosion
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = ENG_tfr_post_brexit_settlement }
+		x = 14
+		y = 5
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_political_power = -40
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_nhs_winter_collapse
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ENG_tfr_nhs_backlog_crisis }
+		x = 2
+		y = 6
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_political_power = -30
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_boris_no_confidence_vote
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ENG_tfr_partygate_revelations }
+		x = 7
+		y = 6
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = -50
+			add_popularity = { ideology = conservative popularity = -0.08 }
+		}
+		ai_will_do = { factor = 9 }
+	}
+
+	focus = {
+		id = ENG_tfr_mini_budget_meltdown
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_energy_bills_explosion }
+		prerequisite = { focus = ENG_tfr_long_covid_labor_shortage }
+		x = 11
+		y = 6
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_eroding_westminster_2 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_eroding_westminster_2
+					add_idea = ENG_tfr_eroding_westminster_3
+				}
+			}
+			else = { add_ideas = ENG_tfr_eroding_westminster_3 }
+			add_stability = -0.06
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	focus = {
+		id = ENG_tfr_winter_of_discontent_2
+		icon = GFX_goal_generic_attack_allies
+		prerequisite = { focus = ENG_tfr_energy_bills_explosion }
+		x = 15
+		y = 6
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_general_strikes_wave
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_rail_and_port_strikes
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_tfr_winter_of_discontent_2 }
+		x = 17
+		y = 7
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_stability = -0.04
+			add_political_power = -25
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_westminster_crossroads
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_boris_no_confidence_vote }
+		prerequisite = { focus = ENG_tfr_mini_budget_meltdown }
+		prerequisite = { focus = ENG_tfr_winter_of_discontent_2 }
+		x = 11
+		y = 7
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 75
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# --- 3 OPPOSING POLITICAL PATHS (2023 - 2025) ---
+	# 1. Conservatives Hold On
+	focus = {
+		id = ENG_tfr_tory_austerity_pivot
+		icon = GFX_goal_generic_neutrality_focus
+		prerequisite = { focus = ENG_tfr_westminster_crossroads }
+		mutually_exclusive = {
+			focus = ENG_tfr_labour_landslide_mandate
+			focus = ENG_tfr_reform_populist_surge
+		}
+		x = 5
+		y = 8
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_popularity = { ideology = conservative popularity = 0.08 }
+			add_ideas = ENG_reform_economics_idea
+			remove_ideas = ENG_tfr_furlough_debt_spiral
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_stealth_tax_hikes
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_tory_austerity_pivot }
+		x = 4
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_political_power = 60
+			add_stability = -0.04
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_anti_strike_minimum_service
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_tfr_tory_austerity_pivot }
+		x = 6
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_general_strikes_wave
+			add_stability = -0.05
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# 2. Labour Party (Keir Starmer)
+	focus = {
+		id = ENG_tfr_labour_landslide_mandate
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = ENG_tfr_westminster_crossroads }
+		mutually_exclusive = {
+			focus = ENG_tfr_tory_austerity_pivot
+			focus = ENG_tfr_reform_populist_surge
+		}
+		x = 11
+		y = 8
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			set_politics = { ruling_party = social_democrat elections_allowed = yes }
+			add_popularity = { ideology = social_democrat popularity = 0.25 }
+			add_ideas = ENG_reform_democracy_idea
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_public_sector_pay_deals
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_labour_landslide_mandate }
+		x = 10
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_general_strikes_wave
+			add_political_power = -40
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_great_british_energy_act
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_labour_landslide_mandate }
+		x = 12
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_cost_of_living_crisis
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# 3. Populists / Reform UK (Farage)
+	focus = {
+		id = ENG_tfr_reform_populist_surge
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ENG_tfr_westminster_crossroads }
+		mutually_exclusive = {
+			focus = ENG_tfr_tory_austerity_pivot
+			focus = ENG_tfr_labour_landslide_mandate
+		}
+		x = 17
+		y = 8
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			set_politics = { ruling_party = authoritarian_democrat elections_allowed = yes }
+			add_popularity = { ideology = authoritarian_democrat popularity = 0.25 }
+			add_ideas = ENG_all_for_farage_idea
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_slash_quangos_and_taxes
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_reform_populist_surge }
+		x = 16
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_furlough_debt_spiral
+			add_stability = -0.06
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_emergency_union_crackdown
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ENG_tfr_reform_populist_surge }
+		x = 18
+		y = 9
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_general_strikes_wave
+			add_political_power = 50
+			add_stability = -0.08
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# --- COALITION DEADLOCK & DECLINE BEFORE 1EW ---
+	focus = {
+		id = ENG_tfr_snp_referendum_standoff
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = {
+			focus = ENG_tfr_stealth_tax_hikes
+			focus = ENG_tfr_public_sector_pay_deals
+			focus = ENG_tfr_slash_quangos_and_taxes
+		}
+		x = 8
+		y = 10
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_scottish_secession_pressure
+			add_political_power = -30
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_nhs_crisis_remediation
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = {
+			focus = ENG_tfr_anti_strike_minimum_service
+			focus = ENG_tfr_great_british_energy_act
+			focus = ENG_tfr_emergency_union_crackdown
+		}
+		x = 14
+		y = 10
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = {
+				ENG_struggling_health_sector_idea
+				ENG_struggling_health_sector_idea_1
+			}
+			add_stability = 0.04
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_hollowed_out_whitehall
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_snp_referendum_standoff }
+		prerequisite = { focus = ENG_tfr_nhs_crisis_remediation }
+		x = 11
+		y = 11
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 50
+			set_country_flag = ENG_sun_sets_idea_cancel_flag
+			remove_ideas = ENG_sun_sets_idea
+			remove_ideas = ENG_tfr_scottish_secession_pressure
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# =========================================================================
+	# SECTION II: IMMIGRATION, STREET RIOTS & DOMESTIC SECURITY 
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_small_boats_crisis_focus
+		icon = GFX_goal_generic_navy_cruiser
+		x = 25
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_small_boats_crisis
+			add_political_power = 25
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_channel_naval_patrols
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = ENG_tfr_small_boats_crisis_focus }
+		x = 23
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			navy_experience = 15
+			add_stability = 0.02
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_rwanda_deportation_scheme
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = ENG_tfr_small_boats_crisis_focus }
+		mutually_exclusive = { focus = ENG_tfr_asylum_processing_overhaul }
+		x = 25
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_rwanda_scheme_backlash
+			remove_ideas = ENG_tfr_small_boats_crisis
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_asylum_processing_overhaul
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_small_boats_crisis_focus }
+		mutually_exclusive = { focus = ENG_tfr_rwanda_deportation_scheme }
+		x = 27
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = -0.04
+			add_political_power = 40
+			remove_ideas = ENG_tfr_small_boats_crisis
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_defy_european_courts
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_tfr_rwanda_deportation_scheme }
+		x = 24
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_rwanda_scheme_backlash
+			add_ideas = ENG_tfr_channel_border_command
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_bipartisan_border_security
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = ENG_tfr_asylum_processing_overhaul }
+		x = 28
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_channel_border_command
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_street_riots_outbreak
+		icon = GFX_goal_generic_attack_allies
+		prerequisite = {
+			focus = ENG_tfr_defy_european_courts
+			focus = ENG_tfr_bipartisan_border_security
+		}
+		x = 26
+		y = 3
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_civil_unrest_riots
+			add_stability = -0.06
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	focus = {
+		id = ENG_tfr_met_police_tactical_units
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ENG_tfr_street_riots_outbreak }
+		mutually_exclusive = { focus = ENG_tfr_community_reconciliation_act }
+		x = 24
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_civil_unrest_riots
+			add_ideas = ENG_tfr_public_order_act_idea
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_community_reconciliation_act
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_tfr_street_riots_outbreak }
+		mutually_exclusive = { focus = ENG_tfr_met_police_tactical_units }
+		x = 28
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = ENG_tfr_civil_unrest_riots
+			add_ideas = ENG_tfr_community_reconciliation_idea
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_neighbourhood_policing_20k
+		icon = GFX_goal_generic_small_arms
+		prerequisite = {
+			focus = ENG_tfr_met_police_tactical_units
+			focus = ENG_tfr_community_reconciliation_act
+		}
+		x = 25
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_rising_crime_rates }
+				swap_ideas = {
+					remove_idea = ENG_rising_crime_rates
+					add_idea = ENG_rising_crime_rates_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = ENG_rising_crime_rates_high }
+				swap_ideas = {
+					remove_idea = ENG_rising_crime_rates_high
+					add_idea = ENG_rising_crime_rates_2
+				}
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_cctv_and_facial_grid
+		icon = GFX_goal_generic_radar
+		prerequisite = {
+			focus = ENG_tfr_met_police_tactical_units
+			focus = ENG_tfr_community_reconciliation_act
+		}
+		x = 27
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			remove_ideas = {
+				ENG_rising_crime_rates
+				ENG_rising_crime_rates_1
+				ENG_rising_crime_rates_2
+				ENG_rising_crime_rates_high
+			}
+			add_stability = 0.05
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_mi5_counter_subversion
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_neighbourhood_policing_20k }
+		prerequisite = { focus = ENG_tfr_cctv_and_facial_grid }
+		x = 26
+		y = 6
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 75
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				create_intelligence_agency = yes
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# =========================================================================
+	# SECTION III: ECONOMY, CONSTRUCTION, ENERGY & RESEARCH 
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_national_productivity_commission
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 43
+		y = 0
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_productivity_drive_idea
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	# --- 1. FINANCE, SERVICES & DIGITAL CONNECTIVITY ---
+	focus = {
+		id = ENG_tfr_codify_service_economy
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_national_productivity_commission }
+		x = 35
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_city_of_london_deregulation
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_empower_city_london
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_codify_service_economy }
+		mutually_exclusive = { focus = ENG_tfr_empower_edinburgh }
+		x = 33
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		available = { 121 = { is_owned_and_controlled_by = ENG } }
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_empower_edinburgh
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_tfr_codify_service_economy }
+		mutually_exclusive = { focus = ENG_tfr_empower_city_london }
+		x = 35
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+			}
+			add_stability = 0.04
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_invest_silicon_glen
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = {
+			focus = ENG_tfr_empower_city_london
+			focus = ENG_tfr_empower_edinburgh
+		}
+		x = 34
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+		ai_will_do = { factor = 12 }
+	}
+
+	# SUBTLE BRIDGE TO PROJECT S.W.A.R.M
+	focus = {
+		id = ENG_tfr_digital_government
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_tfr_invest_silicon_glen }
+		x = 34
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_digital_whitehall_contracts
+			set_country_flag = ENG_digital_contracts_awarded
+			custom_effect_tooltip = ENG_digital_government_tt
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_fintech_open_banking
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_digital_government }
+		x = 33
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_political_power = 75
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_cloud_isles
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_digital_government }
+		x = 35
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_cloud_isles
+				bonus = 0.75
+				uses = 2
+				category = electronics
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_algorithmic_tax_audits
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_fintech_open_banking }
+		prerequisite = { focus = ENG_tfr_cloud_isles }
+		x = 34
+		y = 6
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_political_power = 100
+			remove_ideas = {
+				ENG_systemic_poverty
+				ENG_systemic_poverty_1
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# --- 2. INFRASTRUCTURE, RAILWAYS & UNIVERSITIES ---
+	focus = {
+		id = ENG_tfr_infrastructure_for_productivity
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_tfr_national_productivity_commission }
+		x = 40
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = ENG
+					is_controlled_by = ENG
+					free_building_slots = { building = infrastructure size > 0 }
+				}
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_hs2_rail
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ENG_tfr_infrastructure_for_productivity }
+		mutually_exclusive = { focus = ENG_tfr_northern_powerhouse_rail }
+		x = 39
+		y = 2
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		available = { 126 = { is_owned_and_controlled_by = ENG } }
+		completion_reward = {
+			add_ideas = ENG_tfr_high_speed_rail_network
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_northern_powerhouse_rail
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_infrastructure_for_productivity }
+		mutually_exclusive = { focus = ENG_tfr_hs2_rail }
+		x = 41
+		y = 2
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_northern_industrial_revival
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_midland_main_lines
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = {
+			focus = ENG_tfr_hs2_rail
+			focus = ENG_tfr_northern_powerhouse_rail
+		}
+		x = 39
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_russell_group_grants
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = {
+			focus = ENG_tfr_hs2_rail
+			focus = ENG_tfr_northern_powerhouse_rail
+		}
+		x = 41
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_russell_group_rd_idea
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_golden_triangle_research
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_tfr_russell_group_grants }
+		x = 41
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_golden_triangle_research
+				bonus = 0.75
+				uses = 2
+				category = electronics
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_technical_apprenticeships
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_tfr_midland_main_lines }
+		x = 39
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_technical_apprenticeships
+				bonus = 0.75
+				uses = 2
+				category = industry
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_closing_productivity_gap
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_technical_apprenticeships }
+		prerequisite = { focus = ENG_tfr_golden_triangle_research }
+		x = 40
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	# --- 3. HEAVY INDUSTRY, STEEL & SHIPBUILDING ---
+	focus = {
+		id = ENG_tfr_acknowledge_industrial_collapse
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_national_productivity_commission }
+		x = 46
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_political_power = 40
+			add_tech_bonus = {
+				name = ENG_tfr_acknowledge_industrial_collapse
+				bonus = 0.50
+				uses = 2
+				category = industry
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_british_steel_guarantee
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_tfr_acknowledge_industrial_collapse }
+		x = 45
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_british_steel_shield
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = steel amount = 16 }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_celsa_and_scottish_steel
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = ENG_tfr_british_steel_guarantee }
+		x = 45
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = steel amount = 12 }
+				add_resource = { type = aluminium amount = 10 }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_glasgow_shipbuilding
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_tfr_acknowledge_industrial_collapse }
+		x = 47
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		available = { 121 = { is_owned_and_controlled_by = ENG } }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_belfast_harland_wolff
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_tfr_glasgow_shipbuilding }
+		x = 47
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		available = { 119 = { is_owned_and_controlled_by = ENG } }
+		bypass = { NOT = { owns_state = 119 } }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_aerospace_wales_hub
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = ENG_tfr_celsa_and_scottish_steel }
+		prerequisite = { focus = ENG_tfr_belfast_harland_wolff }
+		x = 46
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_high_value_manufacturing
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_aerospace_wales_hub }
+		x = 46
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# --- 4. STRATEGIC ENERGY & MINERALS ---
+	focus = {
+		id = ENG_tfr_critical_minerals_strategy
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = ENG_tfr_national_productivity_commission }
+		x = 51
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = tungsten amount = 10 }
+				add_resource = { type = chromium amount = 10 }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_dogger_bank_offshore
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = ENG_tfr_critical_minerals_strategy }
+		x = 50
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_north_sea_energy_boom
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = synthetic_refinery level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_north_sea_oil_licences
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = ENG_tfr_critical_minerals_strategy }
+		x = 52
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_resource = { type = oil amount = 14 }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_hinkley_point_c
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_dogger_bank_offshore }
+		x = 50
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_rolls_royce_smr_reactors
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_tfr_north_sea_oil_licences }
+		x = 52
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_rolls_royce_smr_reactors
+				bonus = 1.0
+				uses = 1
+				category = nuclear
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_strategic_energy_independence
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_hinkley_point_c }
+		prerequisite = { focus = ENG_tfr_rolls_royce_smr_reactors }
+		x = 51
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = synthetic_refinery level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+    # =========================================================================
+	# CLUSTER IV: BRITISH ROYALTY & INNER CIRCLE (x = 55..75)
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_crown_and_country
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		x = 65
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# --- CONSTITUTION & EMPIRE ---
+	focus = {
+		id = ENG_tfr_the_queens_speech
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_tfr_crown_and_country }
+		mutually_exclusive = { focus = ENG_tfr_new_constitutional_charter }
+		x = 58
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_crown_constitutional_anchor
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_restore_civil_liberties
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_the_queens_speech }
+		x = 56
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_new_constitutional_charter
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = ENG_tfr_crown_and_country }
+		mutually_exclusive = { focus = ENG_tfr_the_queens_speech }
+		x = 60
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_crown_active_prerogative
+		}
+		ai_will_do = { factor = 2 }
+	}
+
+	focus = {
+		id = ENG_tfr_royal_prerogative_activation
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = ENG_tfr_new_constitutional_charter }
+		x = 62
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.05
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_royal_charitable_initiative
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = {
+			focus = ENG_tfr_the_queens_speech
+			focus = ENG_tfr_new_constitutional_charter
+		}
+		x = 59
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_charitable_shield
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_commonwealth_summit
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_tfr_royal_charitable_initiative }
+		x = 57
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_commonwealth_of_nations_leader }
+				swap_ideas = {
+					remove_idea = ENG_commonwealth_of_nations_leader
+					add_idea = ENG_commonwealth_of_nations_leader_1
+				}
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_crown_diplomatic_corps
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_royal_charitable_initiative }
+		x = 61
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 75
+			every_other_country = {
+				limit = {
+					OR = { tag = CAN tag = AST tag = NZL tag = RAJ tag = SAF }
+					exists = yes
+				}
+				add_opinion_modifier = { target = ENG modifier = large_increase }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_global_anglosphere
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_commonwealth_summit }
+		x = 57
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_albion_union_idea
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_royal_visits_abroad
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_crown_diplomatic_corps }
+		x = 61
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_caribbean_and_pacific_realms
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_tfr_global_anglosphere }
+		x = 57
+		y = 5
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 60
+			navy_experience = 20
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_pax_britannica_ceremonial
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_tfr_caribbean_and_pacific_realms }
+		prerequisite = { focus = ENG_tfr_royal_visits_abroad }
+		x = 59
+		y = 6
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.06
+			add_war_support = 0.06
+			add_political_power = 100
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# --- ROYAL INNER CIRCLE (Charles, Anne, Philip, Edward, William) ---
+	focus = {
+		id = ENG_tfr_the_queens_family
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = ENG_tfr_crown_and_country }
+		x = 69
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 75
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# Column 1: Charles
+	focus = {
+		id = ENG_tfr_prince_trust
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = ENG_tfr_the_queens_family }
+		x = 65
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_charles_harmony
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_harmony_doctrine
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_prince_trust }
+		x = 65
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 40
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_duchy_originals
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_harmony_doctrine }
+		x = 65
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	# Column 2: Princess Anne
+	focus = {
+		id = ENG_tfr_workhorse_of_the_crown
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = ENG_tfr_the_queens_family }
+		x = 67
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_anne_logistics
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_carers_recognition_campaign
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_tfr_workhorse_of_the_crown }
+		x = 67
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.03
+			add_manpower = 25000
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_princess_admiral_royal_navy
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ENG_tfr_carers_recognition_campaign }
+		x = 67
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			navy_experience = 40
+			army_experience = 25
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	# Column 3: Prince Philip
+	focus = {
+		id = ENG_tfr_duke_charities
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_tfr_the_queens_family }
+		x = 69
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_philip_legacy
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_prince_philip_engineering_medal
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_tfr_duke_charities }
+		x = 69
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_prince_philip_engineering_medal
+				bonus = 0.50
+				uses = 1
+				category = industry
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_strength_and_stay
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ENG_tfr_prince_philip_engineering_medal }
+		x = 69
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	# Column 4: Prince Edward
+	focus = {
+		id = ENG_tfr_duke_of_edinburgh_award
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_the_queens_family }
+		x = 71
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_edward_enterprise
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_production_guild_patronage
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ENG_tfr_duke_of_edinburgh_award }
+		x = 71
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_steady_hand_for_youth
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = ENG_tfr_production_guild_patronage }
+		x = 71
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_manpower = 40000
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	# Column 5: Prince William
+	focus = {
+		id = ENG_tfr_sandhurst_to_service
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = ENG_tfr_the_queens_family }
+		x = 73
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_william_veterans
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_heads_together_mental_health
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_sandhurst_to_service }
+		x = 73
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.04
+			add_war_support = 0.03
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_veteran_armed_forces_support
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ENG_tfr_heads_together_mental_health }
+		x = 73
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			army_experience = 35
+			add_manpower = 30000
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_coronation_continuity
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = {
+			focus = ENG_tfr_duchy_originals
+			focus = ENG_tfr_princess_admiral_royal_navy
+		}
+		prerequisite = {
+			focus = ENG_tfr_strength_and_stay
+			focus = ENG_tfr_steady_hand_for_youth
+			focus = ENG_tfr_veteran_armed_forces_support
+		}
+		x = 69
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = { date > 2022.09.01 }
+
+		completion_reward = {
+			add_stability = 0.08
+			add_political_power = 120
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	# =========================================================================
+	# CLUSTER V: TWO-OCEAN DIPLOMACY — EUROPE & ASIA (x = 76..97)
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_global_britain_doctrine
+		icon = GFX_goal_generic_alliance
+		x = 86
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 75
+			if = {
+				limit = { has_idea = ENG_nato_eu_leader_idea }
+				swap_ideas = {
+					remove_idea = ENG_nato_eu_leader_idea
+					add_idea = ENG_nato_eu_leader_idea_1
+				}
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	# --- EUROPEAN & UKRAINE FRONT ---
+	focus = {
+		id = ENG_tfr_european_security_pillar
+		icon = GFX_goal_generic_position_armies
+		prerequisite = { focus = ENG_tfr_global_britain_doctrine }
+		x = 81
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_joint_expeditionary_force
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_tfr_european_security_pillar }
+		x = 78
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_jef_northern_shield
+			every_other_country = {
+				limit = {
+					OR = { tag = NOR tag = SWE tag = FIN tag = DEN tag = EST tag = LAT tag = LIT }
+					exists = yes
+				}
+				add_opinion_modifier = { target = ENG modifier = large_increase }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_lancaster_house_with_france
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ENG_tfr_european_security_pillar }
+		x = 80
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			FRA = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			navy_experience = 25
+			air_experience = 25
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_trinity_house_with_germany
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_tfr_european_security_pillar }
+		x = 82
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			GER = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			army_experience = 25
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_operation_interflex
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ENG_tfr_european_security_pillar }
+		x = 84
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		available = {
+			UKR = {
+				exists = yes
+				NOT = { is_subject_of = SOV is_in_faction_with = SOV }
+			}
+		}
+		bypass = {
+			UKR = {
+				OR = {
+					exists = no
+					is_subject_of = SOV
+					is_in_faction_with = SOV
+				}
+			}
+		}
+
+		completion_reward = {
+			add_ideas = ENG_tfr_ukrainian_training_mission
+			UKR = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 3000
+					producer = ENG
+				}
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_baltic_forward_presence
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = ENG_tfr_joint_expeditionary_force }
+		x = 78
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			army_experience = 30
+			add_command_power = 30
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_polish_british_corridor
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ENG_tfr_lancaster_house_with_france }
+		prerequisite = { focus = ENG_tfr_trinity_house_with_germany }
+		x = 81
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			POL = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			add_war_support = 0.04
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_challenger_and_storm_shadow_aid
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = ENG_tfr_operation_interflex }
+		x = 84
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		available = {
+			UKR = {
+				exists = yes
+				NOT = { is_subject_of = SOV is_in_faction_with = SOV }
+			}
+		}
+		bypass = {
+			UKR = {
+				OR = {
+					exists = no
+					is_subject_of = SOV
+					is_in_faction_with = SOV
+				}
+			}
+		}
+
+		completion_reward = {
+			air_experience = 40
+			UKR = {
+				add_offsite_building = { type = arms_factory level = 1 }
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_nato_wartime_readiness
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = ENG_tfr_baltic_forward_presence }
+		prerequisite = { focus = ENG_tfr_polish_british_corridor }
+		prerequisite = { focus = ENG_tfr_challenger_and_storm_shadow_aid }
+		x = 81
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		available = {
+			OR = {
+				has_war_with = SOV
+				threat > 0.45
+			}
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_ideas = ENG_restored_military_pride_idea
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	# --- ASIA-PACIFIC FRONT ("INDO-PACIFIC TILT") ---
+	focus = {
+		id = ENG_tfr_the_indo_pacific_tilt
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_tfr_global_britain_doctrine }
+		x = 91
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_indo_pacific_tilt_idea
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_accession_to_cptpp
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_the_indo_pacific_tilt }
+		x = 87
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_cptpp_trade_boost
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_sign_the_aukus_pact
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = ENG_tfr_the_indo_pacific_tilt }
+		x = 89
+		y = 2
+		cost = 7
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_aukus_tech_accord
+			AST = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			USA = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_csg21_south_china_sea
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ENG_tfr_the_indo_pacific_tilt }
+		x = 91
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			navy_experience = 40
+			PRC = { add_opinion_modifier = { target = ENG modifier = small_decrease } }
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_japan_raa_and_gcap_pact
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = ENG_tfr_the_indo_pacific_tilt }
+		x = 93
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_gcap_japan_alliance_idea
+			JAP = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			ITA = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_singapore_and_brunei_hubs
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_tfr_accession_to_cptpp }
+		prerequisite = { focus = ENG_tfr_sign_the_aukus_pact }
+		x = 88
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			navy_experience = 25
+			add_equipment_to_stockpile = { type = convoy amount = 150 }
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_diego_garcia_bastion
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_tfr_csg21_south_china_sea }
+		x = 91
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			air_experience = 30
+			navy_experience = 20
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_taiwan_strait_deterrence
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = ENG_tfr_japan_raa_and_gcap_pact }
+		x = 94
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = { CHI = { exists = yes } }
+		bypass = { CHI = { exists = no } }
+
+		completion_reward = {
+			CHI = { add_opinion_modifier = { target = ENG modifier = large_increase } }
+			PRC = { add_opinion_modifier = { target = ENG modifier = medium_decrease } }
+			add_political_power = 40
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_five_power_defence_arrangements
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = ENG_tfr_singapore_and_brunei_hubs }
+		prerequisite = { focus = ENG_tfr_diego_garcia_bastion }
+		prerequisite = { focus = ENG_tfr_taiwan_strait_deterrence }
+		x = 91
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_command_power = 40
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# =========================================================================
+	# CLUSTER VI: GREAT REARMAMENT & ARMED-FORCES EXPANSION (x = 97..128)
+	# =========================================================================
+
+	focus = {
+		id = ENG_tfr_strategic_defence_review
+		icon = GFX_goal_generic_military_sphere
+		x = 112
+		y = 0
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			army_experience = 40
+			navy_experience = 40
+			air_experience = 40
+		}
+		ai_will_do = { factor = 7 }
+	}
+
+	# --- 1. OVERALL DOCTRINE & MANPOWER ---
+	focus = {
+		id = ENG_tfr_operation_excellence
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		mutually_exclusive = { focus = ENG_tfr_worldwide_reach }
+		x = 99
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_coastal_command_idea
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_worldwide_reach
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		mutually_exclusive = { focus = ENG_tfr_operation_excellence }
+		x = 101
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_global_expeditionary_idea
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_national_service_debate
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = {
+			focus = ENG_tfr_operation_excellence
+			focus = ENG_tfr_worldwide_reach
+		}
+		x = 100
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_national_service_scheme
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_expand_reservist_corps
+		icon = GFX_goal_generic_axis_build_infantry
+		prerequisite = { focus = ENG_tfr_national_service_debate }
+		x = 100
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_manpower = 120000
+			add_war_support = 0.05
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	# --- 2. ROYAL ARMY ---
+	focus = {
+		id = ENG_tfr_royal_army
+		icon = GFX_goal_generic_axis_build_infantry
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		x = 106
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_reformed_british_army_1
+			add_tech_bonus = {
+				name = ENG_tfr_royal_army
+				bonus = 0.50
+				uses = 2
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				name = ENG_tfr_royal_army
+				bonus = 0.50
+				uses = 1
+				category = armor
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_as90_and_archer_guns
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = ENG_tfr_royal_army }
+		mutually_exclusive = { focus = ENG_tfr_m270_mlrs_upgrade }
+		x = 104
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_as90_and_archer_guns
+				bonus = 0.75
+				uses = 2
+				category = artillery
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_m270_mlrs_upgrade
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = ENG_tfr_royal_army }
+		mutually_exclusive = { focus = ENG_tfr_as90_and_archer_guns }
+		x = 106
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_m270_mlrs_upgrade
+				bonus = 0.75
+				uses = 2
+				category = rocketry
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_fres_boxer_and_ajax
+		icon = GFX_goal_generic_army_motorized
+		prerequisite = { focus = ENG_tfr_royal_army }
+		x = 108
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_fres_boxer_and_ajax
+				bonus = 0.75
+				uses = 2
+				category = cat_mechanized_equipment
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_mobile_fires_platform
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = {
+			focus = ENG_tfr_as90_and_archer_guns
+			focus = ENG_tfr_m270_mlrs_upgrade
+		}
+		x = 104
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			army_experience = 30
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 300 producer = ENG }
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_challenger_3_program
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ENG_tfr_fres_boxer_and_ajax }
+		mutually_exclusive = { focus = ENG_tfr_mgcs_european_tank }
+		x = 107
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_challenger_3_program
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_mgcs_european_tank
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ENG_tfr_fres_boxer_and_ajax }
+		mutually_exclusive = { focus = ENG_tfr_challenger_3_program }
+		x = 109
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_mgcs_european_tank
+				ahead_reduction = 1.0
+				uses = 1
+				category = armor
+			}
+		}
+		ai_will_do = { factor = 2 }
+	}
+
+	focus = {
+		id = ENG_tfr_nlaw_and_starstreak
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ENG_tfr_mobile_fires_platform }
+		x = 104
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_nlaw_and_starstreak
+				bonus = 0.75
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_special_operations_brigade
+		icon = GFX_goal_generic_special_forces
+		prerequisite = {
+			focus = ENG_tfr_challenger_3_program
+			focus = ENG_tfr_mgcs_european_tank
+		}
+		x = 108
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			army_experience = 40
+			add_tech_bonus = {
+				name = ENG_tfr_special_operations_brigade
+				bonus = 0.75
+				uses = 2
+				category = support_tech
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_future_soldier_army
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = ENG_tfr_nlaw_and_starstreak }
+		prerequisite = { focus = ENG_tfr_special_operations_brigade }
+		x = 106
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_reformed_british_army_1 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_reformed_british_army_1
+					add_idea = ENG_tfr_reformed_british_army_2
+				}
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	# --- 3. ROYAL NAVY ---
+	focus = {
+		id = ENG_tfr_royal_navy
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		x = 113
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_royal_navy_revival_1
+			navy_experience = 50
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_type_26_and_31_frigates
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ENG_tfr_royal_navy }
+		x = 111
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_type_26_and_31_frigates
+				bonus = 0.75
+				uses = 2
+				category = dd_tech
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_queen_elizabeth_carriers
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ENG_tfr_royal_navy }
+		x = 113
+		y = 2
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_queen_elizabeth_carriers
+				bonus = 0.75
+				uses = 1
+				category = cv_tech
+			}
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_astute_and_dreadnought
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = ENG_tfr_royal_navy }
+		x = 115
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_astute_and_dreadnought
+				bonus = 0.75
+				uses = 2
+				category = ss_tech
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_type_45_and_type_83
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ENG_tfr_type_26_and_31_frigates }
+		x = 111
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_type_45_and_type_83
+				bonus = 0.75
+				uses = 2
+				category = cl_tech
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_dragonfire_laser_defense
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = ENG_tfr_type_45_and_type_83 }
+		x = 111
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_dragonfire_laser_defense
+				bonus = 0.75
+				uses = 2
+				category = electronics
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_royal_marines_commandos
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = ENG_tfr_queen_elizabeth_carriers }
+		x = 113
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			navy_experience = 25
+			army_experience = 25
+			add_tech_bonus = {
+				name = ENG_tfr_royal_marines_commandos
+				bonus = 0.75
+				uses = 1
+				category = marine_tech
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_auxiliary_merchant_fleet
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = ENG_tfr_astute_and_dreadnought }
+		x = 115
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_equipment_to_stockpile = { type = convoy amount = 250 }
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_multi_ocean_naval_doctrine
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ENG_tfr_dragonfire_laser_defense }
+		prerequisite = { focus = ENG_tfr_royal_marines_commandos }
+		prerequisite = { focus = ENG_tfr_auxiliary_merchant_fleet }
+		x = 113
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_royal_navy_revival_1 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_royal_navy_revival_1
+					add_idea = ENG_tfr_royal_navy_revival_2
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = ENG_tfr_multi_ocean_naval_doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	# --- 4. ROYAL AIR FORCE & SPACE ---
+	focus = {
+		id = ENG_tfr_royal_airforce_modernisation
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		x = 119
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_raf_dominance_1
+			air_experience = 50
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_watchkeeper_and_protector
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = ENG_tfr_royal_airforce_modernisation }
+		x = 117
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			air_experience = 30
+			add_tech_bonus = {
+				name = ENG_tfr_watchkeeper_and_protector
+				bonus = 0.75
+				uses = 1
+				category = air_doctrine
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_f35_lightning_squadrons
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = ENG_tfr_royal_airforce_modernisation }
+		mutually_exclusive = { focus = ENG_tfr_bae_tempest_initiative }
+		x = 119
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_f35_lightning_squadrons
+				bonus = 0.75
+				uses = 2
+				category = light_fighter
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_bae_tempest_initiative
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = ENG_tfr_royal_airforce_modernisation }
+		mutually_exclusive = { focus = ENG_tfr_f35_lightning_squadrons }
+		x = 121
+		y = 2
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_bae_tempest_initiative
+				ahead_reduction = 1.5
+				uses = 1
+				category = light_fighter
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_p8_poseidon_maritime_patrol
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = ENG_tfr_watchkeeper_and_protector }
+		x = 117
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_p8_poseidon_maritime_patrol
+				bonus = 0.75
+				uses = 1
+				category = naval_bomber
+			}
+		}
+		ai_will_do = { factor = 3 }
+	}
+
+	focus = {
+		id = ENG_tfr_uk_space_command
+		icon = GFX_goal_generic_radar
+		prerequisite = {
+			focus = ENG_tfr_f35_lightning_squadrons
+			focus = ENG_tfr_bae_tempest_initiative
+		}
+		x = 120
+		y = 3
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_uk_space_command_idea
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_istari_satellites_and_skylon
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = ENG_tfr_uk_space_command }
+		x = 120
+		y = 4
+		cost = 6
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ENG_tfr_istari_satellites_and_skylon
+				bonus = 0.75
+				uses = 2
+				category = rocketry
+			}
+		}
+		ai_will_do = { factor = 4 }
+	}
+
+	focus = {
+		id = ENG_tfr_global_air_mobility
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ENG_tfr_p8_poseidon_maritime_patrol }
+		prerequisite = { focus = ENG_tfr_istari_satellites_and_skylon }
+		x = 119
+		y = 5
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_raf_dominance_1 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_raf_dominance_1
+					add_idea = ENG_tfr_raf_dominance_2
+				}
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	# --- 5. DEFENCE INDUSTRY ---
+	focus = {
+		id = ENG_tfr_defence_industrial_policy
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_tfr_strategic_defence_review }
+		x = 125
+		y = 1
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			add_ideas = ENG_tfr_bae_sovereign_base_1
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_consolidate_bae_and_rolls
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = ENG_tfr_defence_industrial_policy }
+		x = 124
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_barrow_nuclear_shipyard
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = ENG_tfr_defence_industrial_policy }
+		x = 126
+		y = 2
+		cost = 6
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes is_core_of = ENG }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 5 }
+	}
+
+	focus = {
+		id = ENG_tfr_munitions_strategic_reserve
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ENG_tfr_consolidate_bae_and_rolls }
+		prerequisite = { focus = ENG_tfr_barrow_nuclear_shipyard }
+		x = 125
+		y = 3
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ENG }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	focus = {
+		id = ENG_tfr_full_spectrum_war_arsenal
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = ENG_tfr_munitions_strategic_reserve }
+		x = 125
+		y = 4
+		cost = 7
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = ENG_tfr_bae_sovereign_base_1 }
+				swap_ideas = {
+					remove_idea = ENG_tfr_bae_sovereign_base_1
+					add_idea = ENG_tfr_bae_sovereign_base_2
+				}
+			}
+		}
+		ai_will_do = { factor = 6 }
+	}
+
+	# =========================================================================
+	# POST-1EW: IF NATO WINS (COMPATIBLE WITH TFR'S EU BRANCH)
+	# =========================================================================
+	shared_focus = USoE001
+	shared_focus = POTEF001
+}

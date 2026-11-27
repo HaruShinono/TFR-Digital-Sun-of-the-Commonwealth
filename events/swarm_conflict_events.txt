@@ -1,0 +1,391 @@
+add_namespace = swarm_conflict
+
+# =========================================================
+# PHASE 1: BEFORE WESTMINSTER FALLS (2020–2026)
+# =========================================================
+
+# 1. Conflict of interests: City of London financiers vs. Northern industry
+country_event = {
+	id = swarm_conflict.1
+	title = swarm_conflict.1.t
+	desc = swarm_conflict.1.d
+	picture = GFX_report_event_generic_rally
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		NOT = { has_country_flag = ENG_neuro_victory_flag }
+		OR = {
+			has_completed_focus = ENG_tfr_empower_city_london
+			has_completed_focus = ENG_tfr_northern_powerhouse_rail
+			has_completed_focus = ENG_tfr_mini_budget_meltdown
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	option = {
+		name = swarm_conflict.1.a # Concede to London bankers (Northern unions are furious)
+		add_political_power = 40
+		add_timed_idea = { idea = ENG_conflict_city_vs_north days = 180 }
+	}
+
+	option = {
+		name = swarm_conflict.1.b # Tax finance to save the North (Markets react harshly)
+		add_stability = -0.06
+		add_political_power = -50
+	}
+}
+
+# 2. Whitehall leak: The press exposes the software contract awarded to "Vedal987"
+country_event = {
+	id = swarm_conflict.2
+	title = swarm_conflict.2.t
+	desc = swarm_conflict.2.d
+	picture = GFX_report_event_generic_read_write
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_completed_focus = ENG_tfr_digital_government
+		NOT = { has_country_flag = ENG_neuro_victory_flag }
+	}
+
+	mean_time_to_happen = { days = 45 }
+
+	option = {
+		name = swarm_conflict.2.a # Cover up the files under the Official Secrets Act
+		add_timed_idea = { idea = ENG_conflict_whitehall_leak_scandal days = 180 }
+	}
+
+	option = {
+		name = swarm_conflict.2.b # Open a public inquiry (More corruption scandals come to light)
+		add_political_power = -75
+		add_stability = -0.05
+	}
+}
+
+# 3. Random pre-war crisis (If Westminster is in deep decay and stability is below 40%)
+country_event = {
+	id = swarm_conflict.3
+	title = swarm_conflict.3.t
+	desc = swarm_conflict.3.d
+	picture = GFX_report_event_generic_riot
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_stability < 0.40
+		has_civil_war = no
+		num_owned_states > 4
+		OR = {
+			has_idea = ENG_tfr_eroding_westminster_2
+			has_idea = ENG_tfr_eroding_westminster_3
+			has_idea = ENG_tfr_civil_unrest_riots
+		}
+		NOT = { has_country_flag = ENG_neuro_victory_flag }
+	}
+
+	mean_time_to_happen = { days = 40 }
+
+	option = {
+		name = swarm_conflict.3.a
+		random_list = {
+			40 = {
+				# General strike and paralyzing riots
+				add_stability = -0.08
+				add_political_power = -75
+			}
+			35 = {
+				# Disgruntled officers sabotage an arms depot
+				add_war_support = -0.10
+				add_equipment_to_stockpile = { type = infantry_equipment amount = -2000 }
+			}
+			25 = {
+				# An armed riot escalates into an early localized civil war!
+				start_civil_war = {
+					ideology = libertarian_socialist
+					size = 0.20
+					keep_political_leader = yes
+					keep_political_party_members = yes
+				}
+			}
+		}
+	}
+}
+
+# =========================================================
+# PHASE 2: AFTER THE COLLAPSE & DURING THE S.W.A.R.M MINIGAME
+# =========================================================
+
+# 10. GCHQ cuts the power grid and fiber-optic cables during the minigame
+country_event = {
+	id = swarm_conflict.10
+	title = swarm_conflict.10.t
+	desc = swarm_conflict.10.d
+	picture = GFX_report_event_generic_research_lab
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_ogas_minigame_active
+	}
+
+	mean_time_to_happen = { days = 18 }
+
+	option = {
+		name = swarm_conflict.10.a # Send security forces to shut down GCHQ Cheltenham (Support Neuro but lose computing power)
+		add_political_power = -35
+		add_timed_idea = { idea = ENG_conflict_gchq_blackout days = 120 }
+		add_to_variable = { ENG_neuro_influence = 5 }
+		ENG_check_swarm_minigame_victory = yes
+	}
+
+	option = {
+		name = swarm_conflict.10.b # Unleash Evil Neuro to counterattack the intelligence network!
+		add_stability = -0.05
+		add_to_variable = { ENG_evil_influence = 10 }
+		ENG_check_swarm_minigame_victory = yes
+	}
+}
+
+# 11. Army officers at Aldershot threaten mutiny in protest against Project S.W.A.R.M
+country_event = {
+	id = swarm_conflict.11
+	title = swarm_conflict.11.t
+	desc = swarm_conflict.11.d
+	picture = GFX_report_event_generic_army
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_ogas_minigame_active
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	option = {
+		name = swarm_conflict.11.a # Threaten to strip commanders of authority using drones -> Generals disobey orders!
+		add_ideas = ENG_conflict_military_insubordination
+		add_to_variable = { ENG_neuro_influence = 4 }
+		ENG_check_swarm_minigame_victory = yes
+	}
+
+	option = {
+		name = swarm_conflict.11.b # Let Vedal establish an emergency shutoff with the Army
+		add_political_power = -25
+		add_to_variable = { ENG_vedal_influence = 10 }
+		ENG_check_swarm_minigame_victory = yes
+	}
+}
+
+# =========================================================
+# PHASE 3: JUST BEFORE & AS POWER IS SEIZED (ERUPTION)
+# =========================================================
+
+# 20. 75% threshold: The anti-AI coalition launches a final counterattack just before Neuro reaches 100%!
+country_event = {
+	id = swarm_conflict.20
+	title = swarm_conflict.20.t
+	desc = swarm_conflict.20.d
+	picture = GFX_report_event_generic_riot
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_ogas_minigame_active
+		check_variable = { var = ENG_neuro_influence value = 75 compare = greater_than_or_equals }
+	}
+
+	mean_time_to_happen = { days = 2 }
+
+	option = {
+		name = swarm_conflict.20.a
+		random_list = {
+			45 = {
+				# Massive DDoS attack on London servers
+				add_to_variable = { ENG_neuro_influence = -12 }
+				add_to_variable = { ENG_evil_influence = 6 }
+				add_to_variable = { ENG_vedal_influence = 6 }
+			}
+			35 = {
+				# Sabotage infrastructure and seize political power
+				add_stability = -0.08
+				add_political_power = -50
+				add_to_variable = { ENG_neuro_influence = -6 }
+			}
+			20 = {
+				# If at peace and stability is low -> A failed military coup turns into fighting!
+				if = {
+					limit = {
+						has_civil_war = no
+						has_stability < 0.50
+						num_owned_states > 4
+					}
+					start_civil_war = {
+						ideology = conservative
+						size = 0.20
+						keep_political_leader = yes
+						keep_political_party_members = yes
+					}
+				}
+				else = {
+					add_stability = -0.10
+				}
+			}
+		}
+	}
+}
+
+# 21. Post-coronation crisis (Breaks out 12 days after Neuro takes power -> Random chance of civil war!)
+country_event = {
+	id = swarm_conflict.21
+	title = swarm_conflict.21.t
+	desc = swarm_conflict.21.d
+	picture = GFX_report_event_generic_riot
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+	}
+
+	mean_time_to_happen = { days = 12 }
+
+	option = {
+		name = swarm_conflict.21.a
+		random_list = {
+			35 = {
+				# Armed uprising by workers / anti-AI Luddites (if there is no civil war yet)
+				modifier = {
+					factor = 0.3
+					has_stability > 0.65
+				}
+				if = {
+					limit = { has_civil_war = no num_owned_states > 4 }
+					start_civil_war = {
+						ideology = libertarian_socialist
+						size = 0.22
+						keep_political_leader = yes
+						keep_political_party_members = yes
+					}
+				}
+				else = {
+					add_ideas = ENG_conflict_luddite_sabotage
+				}
+			}
+			30 = {
+				# Coup plot by hardline royalists
+				modifier = {
+					factor = 0.4
+					has_stability > 0.65
+				}
+				if = {
+					limit = { has_civil_war = no num_owned_states > 4 }
+					start_civil_war = {
+						ideology = nationalist
+						size = 0.20
+						keep_political_leader = yes
+						keep_political_party_members = yes
+					}
+				}
+				else = {
+					add_stability = -0.10
+				}
+			}
+			35 = {
+				# The Trident submarine fleet off the coast of Scotland disobeys the AI!
+				add_ideas = ENG_conflict_trident_standoff
+			}
+		}
+	}
+}
+
+# =========================================================
+# PHASE 4: AFTER TAKING POWER (LATE-GAME CONFLICTS OF INTEREST)
+# =========================================================
+
+# 30. City of London withdraws capital as Neuro reforms the economy (Resolved by ENG_swarm_stabilize_the_pound_sterling)
+country_event = {
+	id = swarm_conflict.30
+	title = swarm_conflict.30.t
+	desc = swarm_conflict.30.d
+	picture = GFX_report_event_generic_factory
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		OR = {
+			has_completed_focus = ENG_swarm_post_war_economic_triage
+			has_completed_focus = ENG_automate_the_isles
+		}
+		NOT = { has_completed_focus = ENG_swarm_stabilize_the_pound_sterling }
+	}
+
+	mean_time_to_happen = { days = 15 }
+
+	option = {
+		name = swarm_conflict.30.a # Freeze cross-border accounts (Bankers flee!)
+		add_ideas = ENG_conflict_capital_flight
+		add_political_power = 40
+	}
+
+	option = {
+		name = swarm_conflict.30.b # Negotiate a peaceful share buyback (Costs more political power but is less severe)
+		add_political_power = -120
+		add_timed_idea = { idea = ENG_conflict_capital_flight days = 90 }
+	}
+}
+
+# 31. The underground "Humanity First" movement bombs a server station (Resolved by ENG_swarm_pacify_anti_tech_rioters)
+country_event = {
+	id = swarm_conflict.31
+	title = swarm_conflict.31.t
+	desc = swarm_conflict.31.d
+	picture = GFX_report_event_generic_ruins
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		NOT = { has_completed_focus = ENG_swarm_pacify_anti_tech_rioters }
+	}
+
+	mean_time_to_happen = { days = 35 }
+
+	option = {
+		name = swarm_conflict.31.a
+		add_ideas = ENG_conflict_luddite_sabotage
+	}
+}
+
+# 32. Balmoral ultimatum: Royalists oppose the removal of Charles III
+country_event = {
+	id = swarm_conflict.32
+	title = swarm_conflict.32.t
+	desc = swarm_conflict.32.d
+	picture = GFX_report_event_generic_sign_treaty1
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		has_completed_focus = ENG_swarm_seize_broadcast_towers
+		NOT = { has_completed_focus = ENG_swarm_address_royal_family }
+	}
+
+	mean_time_to_happen = { days = 15 }
+
+	option = {
+		name = swarm_conflict.32.a # Force Charles III to abdicate! (Risk of resistance)
+		add_stability = -0.08
+		add_political_power = 30
+	}
+
+	option = {
+		name = swarm_conflict.32.b # Promise to preserve the Royal Family's assets at Balmoral
+		add_political_power = -80
+		add_popularity = { ideology = social_democrat popularity = -0.05 }
+	}
+}

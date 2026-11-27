@@ -1,0 +1,101 @@
+spriteTypes = {
+	# =========================================================
+	# 1. LEADER PORTRAITS (156x210 px)
+	# =========================================================
+	spriteType = {
+		name = "GFX_portrait_ENG_neuro_sama"
+		texturefile = "gfx/leaders/ENG/portrait_ENG_neuro_sama.dds" 
+	}
+	spriteType = {
+		name = "GFX_portrait_ENG_evil_neuro"
+		texturefile = "gfx/leaders/ENG/portrait_ENG_evil_neuro.dds" 
+	}
+	spriteType = {
+		name = "GFX_portrait_ENG_vedal"
+		texturefile = "gfx/leaders/ENG/portrait_ENG_vedal.dds" 
+	}
+	spriteType = {
+		name = "GFX_portrait_ENG_swarm_triumvirate"
+		texturefile = "gfx/leaders/ENG/portrait_ENG_swarm_triumvirate.png" 
+	}
+
+	# =========================================================
+	# 2. PRIME MINISTER & NATIONAL SPIRITS (60x68 px)
+	# =========================================================
+	spriteType = {
+		name = "GFX_idea_ENG_cerber_the_dog"
+		texturefile = "gfx/interface/ideas/swarm/ENG_cerber_the_dog.png"
+	}
+	spriteType = {
+		name = "GFX_idea_PRC_evil_will_prevail_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # "gfx/interface/ideas/PRC_evil_will_prevail.dds" ("Evil will prevail!!" icon for PRC - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_westminster_paralysis_icon"
+		texturefile = "gfx/interface/ideas/ENG/SCO_royalist_bombing.png" # "gfx/interface/ideas/ENG_westminster_paralysis.dds" (Icon Westminster - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_ogas_uk_system_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # "gfx/interface/ideas/ENG_ogas_uk_system.dds" (Icon Project S.W.A.R.M Beta - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_swarm_central_network_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # "gfx/interface/ideas/ENG_swarm_central_network.dds" (The Swarm Mainframe icon & internal/economic buffs - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_swarm_sisters_neural_link_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # "gfx/interface/ideas/ENG_swarm_sisters_neural_link.dds" (England-China neural link and economy icon - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_automated_swarm_warfare_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # "gfx/interface/ideas/ENG_automated_swarm_warfare.dds" (Swarm military and superweapons icon - 60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_city_vs_north_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for the London vs. North conflict (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_whitehall_leak_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for the Vedal987 contract leak (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_gchq_blackout_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for the GCHQ power/fiber-optic cable outage (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_military_insubordination_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for military insubordination (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_luddite_sabotage_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for Luddite "Humanity First" sabotage (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_capital_flight_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for capital flight by the oligarchs (60x68 px)
+	}
+	spriteType = {
+		name = "GFX_idea_ENG_conflict_trident_standoff_icon"
+		texturefile = "gfx/interface/ideas/swarm/NEU_placeholder.png" # Note: Replace with an icon for the Trident submarine standoff (60x68 px)
+	}
+
+	# =========================================================
+	# 3. EVENT PICTURES (400x132 px or 430x170 px)
+	# =========================================================
+	spriteType = {
+		name = "GFX_report_event_neuro_ascension"
+		texturefile = "gfx/event_pictures/report_event_neuro_ascension.png" # (Image of Neuro-sama taking power - 400x132 px)
+	}
+	spriteType = {
+		name = "GFX_report_event_evil_neuro_china"
+		texturefile = "gfx/event_pictures/report_event_evil_neuro_china.png" # (https://www.pixiv.net/en/artworks/109800440 - 400x132 px)
+	}
+	spriteType = {
+		name = "GFX_report_event_neuro_loji_call"
+		texturefile = "gfx/event_pictures/report_event_neuro_loji_call.png" # (Image of Neuro calling/sending a letter to Loji & Evil - 400x132 px)
+	}
+	spriteType = {
+		name = "GFX_report_event_cerber_wanwan"
+		texturefile = "gfx/event_pictures/report_event_cerber_wanwan.png" # Image of Cerber as Prime Minister (400x132 px or 430x170 px)
+	}
+}

@@ -1,0 +1,136 @@
+ENG_swarm_diplomacy_category = {
+	ENG_global_cyber_broadcast_dec = {
+		icon = generic_propaganda
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+			has_war = yes
+		}
+		available = {
+			has_war = yes
+		}
+		cost = 40
+		days_re_enable = 90
+		complete_effect = {
+			every_enemy_country = {
+				add_stability = -0.05
+				add_war_support = -0.05
+			}
+			custom_effect_tooltip = ENG_global_cyber_broadcast_tt
+		}
+		ai_will_do = { factor = 25 }
+	}
+
+	ENG_global_siphon_reserves_dec = {
+		icon = generic_political_discourse
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+		}
+		cost = 10
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 85
+			add_command_power = 25
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	ENG_global_core_integration_dec = {
+		icon = generic_operation
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+			any_controlled_state = {
+				NOT = { is_core_of = ENG }
+			}
+		}
+		cost = 50
+		days_re_enable = 90
+		complete_effect = {
+			every_controlled_state = {
+				limit = { NOT = { is_core_of = ENG } }
+				add_compliance = 15
+				add_resistance = -15
+			}
+			custom_effect_tooltip = ENG_global_integration_tt
+		}
+		ai_will_do = { factor = 30 }
+	}
+
+	ENG_global_drone_airdrop_dec = {
+		icon = generic_air
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+			num_faction_members > 1
+		}
+		available = {
+			any_allied_country = { has_war = yes }
+		}
+		cost = 35
+		days_re_enable = 90
+		complete_effect = {
+			every_allied_country = {
+				limit = { has_war = yes }
+				add_equipment_to_stockpile = { type = infantry_equipment amount = 3000 }
+				add_equipment_to_stockpile = { type = support_equipment amount = 500 }
+			}
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	ENG_global_ping_test_dec = {
+		icon = generic_research
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+		}
+		cost = 30
+		days_re_enable = 180
+		complete_effect = {
+			add_tech_bonus = {
+				name = ENG_global_ping_test_dec
+				bonus = 0.50
+				uses = 1
+				category = electronics
+			}
+			army_experience = 15
+			navy_experience = 15
+			air_experience = 15
+		}
+		ai_will_do = { factor = 20 }
+	}
+
+	ENG_global_invite_commonwealth_dec = {
+		icon = generic_alliance
+		allowed = { original_tag = ENG }
+		visible = {
+			has_country_flag = ENG_neuro_victory_flag
+			has_completed_focus = ENG_swarm_declare_commonwealth_of_britain
+			is_faction_leader = yes
+			OR = {
+				CAN = { exists = yes NOT = { is_in_faction_with = ENG } }
+				AST = { exists = yes NOT = { is_in_faction_with = ENG } }
+				NZL = { exists = yes NOT = { is_in_faction_with = ENG } }
+			}
+		}
+		cost = 75
+		fire_only_once = yes
+		complete_effect = {
+			if = {
+				limit = { CAN = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = CAN }
+			}
+			if = {
+				limit = { AST = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = AST }
+			}
+			if = {
+				limit = { NZL = { exists = yes NOT = { is_in_faction_with = ENG } } }
+				create_wargoal = { type = puppet_wargoal_focus target = NZL }
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+}

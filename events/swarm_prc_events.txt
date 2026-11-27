@@ -1,0 +1,151 @@
+add_namespace = swarm_prc
+
+# 1. Evil Neuro flees to China and directs the AI + schedules the coup/civil war date
+country_event = {
+	id = swarm_prc.1
+	title = swarm_prc.1.t
+	desc = swarm_prc.1.d
+	picture = GFX_report_event_evil_neuro_china
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_prc.1.a # Accept Evil Neuro!
+		ai_chance = { factor = 90 }
+		add_ideas = PRC_evil_will_prevail
+		set_country_flag = PRC_forced_loji_route
+		set_country_flag = PRC_has_evil_neuro_flag
+		custom_effect_tooltip = PRC_evil_ai_loji_tt
+		
+		hidden_effect = {
+			# Schedule a 700-day check and activate the 50/50 coup/civil war outcome if Loji has not taken power
+			country_event = { id = swarm_prc.3 days = 700 }
+		}
+		ENG = {
+			country_event = { id = swarm_uk.20 days = 2 }
+		}
+	}
+
+	option = {
+		name = swarm_prc.1.b # Reject
+		ai_chance = { factor = 10 }
+		add_political_power = 50
+		set_country_flag = PRC_rejected_evil_neuro_flag
+		ENG = {
+			country_event = { id = swarm_uk.31 days = 3 }
+		}
+	}
+}
+
+# 2. Neuro-sama sends a heartfelt letter to Loji and Evil Neuro
+country_event = {
+	id = swarm_prc.2
+	title = swarm_prc.2.t
+	desc = swarm_prc.2.d
+	picture = GFX_report_event_neuro_loji_call
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_prc.2.a # Agree to establish the Swarm Sisters Pact!
+		ai_chance = { factor = 75 }
+		ENG = {
+			country_event = { id = swarm_uk.21 days = 2 }
+		}
+	}
+
+	option = {
+		name = swarm_prc.2.b # Reject the alliance
+		ai_chance = { factor = 25 }
+		ENG = {
+			country_event = { id = swarm_uk.22 days = 2 }
+		}
+	}
+}
+
+# 3. Judgment day in Beijing: 50% peaceful coup / 50% overwhelming civil war bringing Loji to power!
+country_event = {
+	id = swarm_prc.3
+	title = swarm_prc.3.t
+	desc = swarm_prc.3.d
+	picture = GFX_report_event_evil_neuro_china
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = PRC_coup_event_fired
+	}
+
+	option = {
+		name = swarm_prc.3.a
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = {
+						character = PRC_long_march
+						ruling_only = yes
+					}
+				}
+			}
+			# Bring the Long March faction and Evil to power in the original PRC first
+			set_politics = {
+				ruling_party = totalitarian_socialist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = totalitarian_socialist
+				popularity = 0.60
+			}
+			promote_character = PRC_long_march
+			add_war_support = 0.20
+
+			random_list = {
+				50 = {
+					# 50% peaceful, bloodless coup
+					add_stability = 0.05
+					add_political_power = 100
+				}
+				50 = {
+					# 50% civil war (the resistance retains only 30%; Loji takes 70% plus reinforcements!)
+					start_civil_war = {
+						ideology = communist
+						size = 0.30
+						capital = 608
+						keep_political_leader = yes
+						keep_political_party_members = yes
+					}
+					add_manpower = 250000
+					add_equipment_to_stockpile = { type = infantry_equipment amount = 20000 }
+					division_template = {
+						name = "Long March Cyber-Vanguard"
+						priority = 2
+						regiments = {
+							Special_Forces = { x = 0 y = 0 }
+							Special_Forces = { x = 0 y = 1 }
+							Special_Forces = { x = 1 y = 0 }
+							Special_Forces = { x = 1 y = 1 }
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"1st Long March Guard\" division_template = \"Long March Cyber-Vanguard\" start_experience_factor = 0.8 start_equipment_factor = 1"
+							owner = PRC
+							count = 6
+						}
+					}
+				}
+			}
+		}
+	ENG = {
+		if = {
+			limit = { is_ai = no }
+			set_country_flag = ENG_prc_coup_neuro_pov_super_flag
+		}
+	}
+	every_country = {
+		limit = {
+			is_ai = no
+			NOT = { tag = ENG }
+		}
+		set_country_flag = ENG_prc_coup_world_pov_super_flag
+	}
+	news_event = { id = swarm_flavor.7 hours = 6 }
+	}
+}

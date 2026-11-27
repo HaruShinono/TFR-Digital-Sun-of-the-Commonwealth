@@ -1,0 +1,10 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_icon_portrait_ENG_neuro_sama"
+		texturefile = "gfx/leaders/ENG/portrait_ENG_neuro_sama.dds"
+	}
+	spriteType = {
+		name = "GFX_icon_ENG_cerber_the_dog"
+		texturefile = "gfx/interface/ideas/ENG_cerber_the_dog.dds"
+	}
+}

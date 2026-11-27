@@ -1,0 +1,84 @@
+ENG_emergency_swarm_backup_category = {
+	icon = generic_political_actions
+	allowed = {
+		original_tag = ENG
+	}
+	visible = {
+		NOT = {
+			is_subject_of = SOV
+			has_country_flag = ENG_ogas_minigame_active
+			has_country_flag = ENG_neuro_victory_flag
+			has_country_flag = ENG_evil_victory_flag
+			has_country_flag = ENG_vedal_victory_flag
+			has_country_flag = ENG_swarm_backup_activated
+		}
+		OR = {
+			has_global_flag = SOV_first_nato_war_victory
+			has_global_flag = SOV_first_nato_war_victory_CPRF
+			has_global_flag = SOV_first_nato_war_victory_MVD
+			has_global_flag = SOV_LDPR_victory_NATO1
+			has_global_flag = SOV_CPRF_victory_NATO1
+			has_global_flag = SOV_UR_victory_NATO1
+			has_global_flag = SOV_russia_second_nato_war_victory_global
+			has_global_flag = SOV_third_nato_war_victory
+			has_global_flag = SOV_russia_third_nato_war_victory_global
+			GER = { is_subject_of = SOV }
+			FRA = { is_subject_of = SOV }
+			has_cosmetic_tag = ENG_Kingdom_of_Great_Britain_cos_tag
+			has_idea = ENG_all_for_farage_idea
+			has_war_with = UK2
+			has_war_with = SCO
+			SOV = {
+				OR = {
+					has_idea = SOV_nato_war_victor
+					has_country_flag = SOV_navalny_second_war_victory_flag
+					has_country_flag = SOV_navalny_second_war_victory_flag_alihanov
+					has_country_flag = SOV_wagner_second_war_victory_flag
+					has_country_flag = SOV_alikhanov_second_war_victory_flag
+				}
+			}
+		}
+	}
+	priority = 110
+}
+
+ENG_ogas_control_category = {
+	icon = generic_research
+	allowed = {
+		original_tag = ENG
+	}
+	visible = {
+		has_country_flag = ENG_ogas_minigame_active
+		NOT = { is_subject_of = SOV }
+	}
+	visible_when_empty = yes
+	priority = 100
+}
+
+ENG_swarm_diplomacy_category = {
+	icon = generic_political_actions
+	allowed = {
+		original_tag = ENG
+	}
+	visible = {
+		has_country_flag = ENG_neuro_victory_flag
+	}
+	visible_when_empty = yes
+	priority = 95
+}
+ENG_swarm_superweapon_category = {
+	icon = generic_research
+	allowed = {
+		always = yes
+	}
+	visible = {
+		OR = {
+			tag = ENG
+			is_in_faction_with = ENG
+		}
+		ENG = {
+			has_country_flag = ENG_pact_rd_unlocked
+		}
+	}
+	priority = 90
+}

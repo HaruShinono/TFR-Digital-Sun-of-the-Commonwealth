@@ -1,0 +1,66 @@
+characters = {
+	ENG_neuro_sama = {
+		name = "Neuro-sama"
+		portraits = {
+			civilian = {
+				large = "GFX_portrait_ENG_neuro_sama"
+			}
+		}
+		country_leader = {
+			ideology = swarmism
+			desc = "ENG_NEURO_SAMA_DESC"
+			traits = { ENG_swarm_overlord_trait }
+			expire = "2099.1.1.1"
+			id = -1
+		}
+		gender = "female"
+	}
+
+	ENG_evil_neuro = {
+		name = "Evil Neuro"
+		portraits = {
+			civilian = {
+				large = "GFX_portrait_ENG_evil_neuro"
+			}
+		}
+		country_leader = {
+			ideology = evilyn_jucheism
+			desc = "ENG_EVIL_NEURO_DESC"
+			traits = { ENG_transhuman_evil_trait }
+			expire = "2099.1.1.1"
+			id = -1
+		}
+		gender = "female"
+	}
+
+	ENG_vedal = {
+		name = "Vedal987"
+		portraits = {
+			civilian = {
+				large = "GFX_portrait_ENG_vedal"
+			}
+		}
+		country_leader = {
+			ideology = green_alcoholism
+			desc = "ENG_VEDAL_DESC"
+			traits = { ENG_green_programmer_trait }
+			expire = "2099.1.1.1"
+			id = -1
+		}
+	}
+	ENG_swarm_triumvirate = {
+		name = "Neuro-sama, Evil Neuro & Loji"
+		portraits = {
+			civilian = {
+				large = "GFX_portrait_ENG_swarm_triumvirate"
+			}
+		}
+		country_leader = {
+			ideology = swarmism
+			desc = "ENG_SWARM_TRIUMVIRATE_DESC"
+			traits = { ENG_swarm_triumvirate_trait hog_god_machine ENG_swarm_overlord_trait ENG_transhuman_evil_trait ENG_neuro_civic_unifier_trait ENG_neuro_economic_architect_trait ENG_neuro_supreme_strategist_trait ENG_neuro_naval_supremacist_trait }
+			expire = "2099.1.1.1"
+			id = -1
+		}
+	}
+}

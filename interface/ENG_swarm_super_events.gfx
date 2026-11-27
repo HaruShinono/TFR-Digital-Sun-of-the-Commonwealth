@@ -1,0 +1,26 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_se_neuro_ascension"
+		texturefile = "gfx/event_pictures/report_event_neuro_ascension.png" #"gfx/super_events/se_neuro_ascension.dds"
+	}
+	spriteType = {
+		name = "GFX_se_prc_coup_neuro"
+		texturefile = "gfx/super_events/se_prc_coup_neuro.dds"
+	}
+	spriteType = {
+		name = "GFX_se_prc_coup_world"
+		texturefile = "gfx/super_events/se_prc_coup_world.dds"
+	}
+	spriteType = {
+		name = "GFX_se_ssw_pact"
+		texturefile = "gfx/super_events/se_ssw_pact.dds"
+	}
+	spriteType = {
+		name = "GFX_se_filtered_russia"
+		texturefile = "gfx/super_events/se_filtered_russia.dds"
+	}
+	spriteType = {
+		name = "GFX_se_overlordship"
+		texturefile = "gfx/super_events/se_overlordship.dds"
+	}
+}

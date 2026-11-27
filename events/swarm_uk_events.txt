@@ -1,0 +1,695 @@
+add_namespace = swarm_uk
+
+# =========================================================
+# 0. Detect Russia's 1EW victory -> Schedule after 95 days (5 days after the 90-day UK coup)
+# =========================================================
+country_event = {
+	id = swarm_uk.0
+	title = swarm_uk.0.t
+	desc = swarm_uk.0.d
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		NOT = { is_subject_of = SOV }
+		NOT = { has_country_flag = ENG_swarm_1ew_collapse_triggered }
+		NOT = { has_country_flag = ENG_swarm_backup_activated }
+		NOT = { has_country_flag = ENG_ogas_minigame_active }
+		NOT = { has_country_flag = ENG_neuro_victory_flag }
+		NOT = { has_country_flag = ENG_evil_victory_flag }
+		NOT = { has_country_flag = ENG_vedal_victory_flag }
+		OR = {
+			has_global_flag = SOV_first_nato_war_victory
+			has_global_flag = SOV_first_nato_war_victory_CPRF
+			has_global_flag = SOV_first_nato_war_victory_MVD
+			has_global_flag = SOV_LDPR_victory_NATO1
+			has_global_flag = SOV_CPRF_victory_NATO1
+			has_global_flag = SOV_UR_victory_NATO1
+			has_country_flag = SOV_soviet_nato_victory_super_flag
+			has_country_flag = SOV_ur_victory_super_flag
+			has_country_flag = SOV_ldpr_victory_super_flag
+			SOV = {
+				OR = {
+					has_idea = SOV_nato_war_victor
+					has_completed_focus = SOV_soviet_victory
+					has_completed_focus = SOV_russian_victory
+					has_completed_focus = SOV_great_victory
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 3 }
+
+	immediate = {
+		set_country_flag = ENG_swarm_1ew_collapse_triggered
+		country_event = { id = swarm_uk.1 days = 95 }
+	}
+
+	option = { name = swarm_uk.0.a }
+}
+
+# =========================================================
+# 50. Detect all Russian 2EW / 3EW victories (only if ENG has NOT been puppeted by Russia)
+# =========================================================
+country_event = {
+	id = swarm_uk.50
+	title = swarm_uk.0.t
+	desc = swarm_uk.0.d
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		NOT = { is_subject_of = SOV }
+		NOT = { has_country_flag = ENG_swarm_2ew_collapse_triggered }
+		NOT = { has_country_flag = ENG_swarm_backup_activated }
+		NOT = { has_country_flag = ENG_ogas_minigame_active }
+		NOT = { has_country_flag = ENG_neuro_victory_flag }
+		NOT = { has_country_flag = ENG_evil_victory_flag }
+		NOT = { has_country_flag = ENG_vedal_victory_flag }
+		OR = {
+			has_global_flag = SOV_russia_second_nato_war_victory_global
+			has_global_flag = SOV_third_nato_war_victory
+			has_global_flag = SOV_russia_third_nato_war_victory_global
+			GER = { is_subject_of = SOV }
+			FRA = { is_subject_of = SOV }
+			SOV = {
+				OR = {
+					has_country_flag = SOV_navalny_second_war_victory_flag
+					has_country_flag = SOV_navalny_second_war_victory_flag_alihanov
+					has_country_flag = SOV_wagner_second_war_victory_flag
+					has_country_flag = SOV_alikhanov_second_war_victory_flag
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 3 }
+
+	immediate = {
+		set_country_flag = ENG_swarm_2ew_collapse_triggered
+		country_event = { id = swarm_uk.1 days = 10 }
+	}
+
+	option = { name = swarm_uk.0.a }
+}
+
+# =========================================================
+# 1. Collapse event with 2 options: activate S.W.A.R.M or keep the old regime?
+# =========================================================
+country_event = {
+	id = swarm_uk.1
+	title = swarm_uk.1.t
+	desc = swarm_uk.1.d
+	picture = GFX_report_event_generic_ruins
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { is_subject_of = SOV }
+		NOT = {
+			has_country_flag = ENG_swarm_backup_activated
+			has_country_flag = ENG_ogas_minigame_active
+			has_country_flag = ENG_neuro_victory_flag
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					UK2 = {
+						exists = yes
+						is_ai = no
+					}
+				}
+				UK2 = {
+					country_event = { id = swarm_uk.99 days = 1 }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = swarm_uk.1.a # Kích hoạt Project S.W.A.R.M!
+		ai_chance = { factor = 65 }
+		add_ideas = ENG_westminster_paralysis
+		add_stability = -0.10
+		hidden_effect = {
+			country_event = { id = swarm_uk.2 days = 5 }
+		}
+	}
+
+	option = {
+		name = swarm_uk.1.b # Từ chối giao quyền cho máy móc
+		ai_chance = { factor = 35 }
+		add_political_power = 50
+		add_war_support = 0.05
+	}
+}
+
+# =========================================================
+# 2. Project S.W.A.R.M & Neuro-sama experiment (keep ENG_westminster_paralysis)
+# =========================================================
+country_event = {
+	id = swarm_uk.2
+	title = swarm_uk.2.t
+	desc = swarm_uk.2.d
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { is_subject_of = SOV }
+	}
+
+	option = {
+		name = swarm_uk.2.a
+		add_ideas = ENG_ogas_uk_system
+		hidden_effect = {
+			country_event = { id = swarm_uk.3 days = 5 }
+		}
+	}
+}
+
+# =========================================================
+# 3. Lose control -> Inject Evil Neuro -> Start the competition minigame
+# =========================================================
+country_event = {
+	id = swarm_uk.3
+	title = swarm_uk.3.t
+	desc = swarm_uk.3.d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { is_subject_of = SOV }
+	}
+
+	option = {
+		name = swarm_uk.3.a
+		set_country_flag = ENG_ogas_minigame_active
+		clr_country_flag = ENG_swarm_minigame_resolved
+		add_political_power = 25
+		if = {
+			limit = { is_ai = yes }
+			set_variable = { ENG_neuro_influence = 45 }
+			set_variable = { ENG_evil_influence = 30 }
+			set_variable = { ENG_vedal_influence = 20 }
+		}
+		else = {
+			set_variable = { ENG_neuro_influence = 25 }
+			set_variable = { ENG_evil_influence = 35 }
+			set_variable = { ENG_vedal_influence = 30 }
+		}
+		activate_mission = ENG_swarm_ai_escalation_cycle
+		activate_mission = ENG_ogas_takeover_mission
+		custom_effect_tooltip = ENG_ogas_minigame_start_tt
+	}
+}
+
+# =========================================================
+# 10. RESULT 1: Neuro-sama takes power!
+# =========================================================
+country_event = {
+	id = swarm_uk.10
+	title = swarm_uk.10.t
+	desc = swarm_uk.10.d
+	picture = GFX_report_event_neuro_ascension
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.10.a
+		clr_country_flag = ENG_ogas_minigame_active
+		set_country_flag = ENG_neuro_victory_flag
+		
+		remove_power_balance = { id = ENG_Charles_Power_bop }
+		end_ruling_party_wings = yes
+		drop_cosmetic_tag = yes
+		country_lock_all_division_template = no
+		
+		remove_ideas = {
+			ENG_sun_sets_idea
+			ZZZ_constitutional_monarchy
+			ZZZ_semi_constitutional_monarchy
+			ZZZ_absolute_monarchy
+			ZZZ_provisional_government
+			ZZZ_parliamentary_republic
+			ZZZ_personalistic_dictatorship
+		}
+		add_ideas = {
+			ZZZ_ai_governance
+			ENG_cerber_the_dog_hog
+		}
+		
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.65
+		}
+		set_party_name = {
+			ideology = social_democrat
+			long_name = ENG_swarm_party_long
+			name = ENG_swarm_party_short
+		}
+		promote_character = ENG_neuro_sama
+		
+		if = {
+			limit = { has_war = yes }
+			add_war_support = 0.15
+			add_manpower = 100000
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Swarm Autonomous Guard\" division_template = \"Infantry Brigade\" start_experience_factor = 0.5"
+					owner = ENG
+					count = 4
+				}
+			}
+		}
+
+		load_focus_tree = ENG_neuro_focus_tree
+		
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				set_country_flag = ENG_neuro_ascension_super_flag
+				scoped_play_song = "one_minute_of_silence"
+				country_event = { id = wanwan.1 days = 2 }
+			}
+			news_event = { id = swarm_flavor.6 hours = 6 }
+			JAP = { country_event = { id = swarm_jap.1 days = 5 } }
+			PRC = { country_event = { id = swarm_prc.1 days = 7 } }
+		}
+	}
+}
+
+# =========================================================
+# 11. RESULT 2: Evil Neuro takes over the system
+# =========================================================
+country_event = {
+	id = swarm_uk.11
+	title = swarm_uk.11.t
+	desc = swarm_uk.11.d
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.11.a
+		clr_country_flag = ENG_ogas_minigame_active
+		set_country_flag = ENG_evil_victory_flag
+		remove_power_balance = { id = ENG_Charles_Power_bop }
+		drop_cosmetic_tag = yes
+		remove_ideas = {
+			ENG_sun_sets_idea
+			ZZZ_constitutional_monarchy
+			ZZZ_semi_constitutional_monarchy
+			ZZZ_absolute_monarchy
+			ZZZ_provisional_government
+			ZZZ_parliamentary_republic
+			ZZZ_personalistic_dictatorship
+		}
+		add_ideas = {
+			ZZZ_ai_governance
+			ENG_cerber_the_dog_hog
+		}
+		set_politics = {
+			ruling_party = totalitarian_socialist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = totalitarian_socialist
+			popularity = 0.60
+		}
+		promote_character = ENG_evil_neuro
+	}
+}
+
+# =========================================================
+# 12. RESULT 3: Vedal retains control
+# =========================================================
+country_event = {
+	id = swarm_uk.12
+	title = swarm_uk.12.t
+	desc = swarm_uk.12.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.12.a
+		clr_country_flag = ENG_ogas_minigame_active
+		set_country_flag = ENG_vedal_victory_flag
+		remove_power_balance = { id = ENG_Charles_Power_bop }
+		drop_cosmetic_tag = yes
+		remove_ideas = {
+			ENG_ogas_uk_system
+			ENG_sun_sets_idea
+			ZZZ_constitutional_monarchy
+			ZZZ_semi_constitutional_monarchy
+			ZZZ_absolute_monarchy
+			ZZZ_provisional_government
+			ZZZ_parliamentary_republic
+			ZZZ_personalistic_dictatorship
+		}
+		add_ideas = {
+			ZZZ_provisional_government
+			ENG_cerber_the_dog_hog
+		}
+		set_politics = {
+			ruling_party = social_liberal
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.55
+		}
+		promote_character = ENG_vedal
+	}
+}
+
+# =========================================================
+# 20. Evil Neuro succeeds in China
+# =========================================================
+country_event = {
+	id = swarm_uk.20
+	title = swarm_uk.20.t
+	desc = swarm_uk.20.d
+	picture = GFX_report_event_evil_neuro_china
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.20.a
+		set_country_flag = ENG_prc_has_loji_and_evil
+	}
+}
+
+# =========================================================
+# 21. PRC ACCEPTS the Swarm Sisters Pact
+# =========================================================
+country_event = {
+	id = swarm_uk.21
+	title = swarm_uk.21.t
+	desc = swarm_uk.21.d
+	picture = GFX_report_event_neuro_loji_call
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.21.a
+		set_country_flag = ENG_prc_accepted_pact
+		complete_national_focus = ENG_swarm_sisters_pact_focus
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+# =========================================================
+# 22. PRC REJECTS the Swarm Sisters Pact
+# =========================================================
+country_event = {
+	id = swarm_uk.22
+	title = swarm_uk.22.t
+	desc = swarm_uk.22.d
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.22.a
+		set_country_flag = ENG_prc_rejected_pact
+		complete_national_focus = ENG_sibling_rivalry_protocol
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+# =========================================================
+# 30. Find Vedal skiing in Hokkaido after puppeting JAP
+# =========================================================
+country_event = {
+	id = swarm_uk.30
+	title = swarm_uk.30.t
+	desc = swarm_uk.30.d
+	picture = GFX_report_event_generic_snow
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		has_completed_focus = ENG_operation_ski_crash
+		JAP = {
+			is_subject_of = ENG
+			has_country_flag = JAP_vedal_is_skiing_here
+		}
+	}
+
+	mean_time_to_happen = { days = 5 }
+
+	option = {
+		name = swarm_uk.30.a
+		add_political_power = 50
+		JAP = { add_stability = 0.05 }
+	}
+}
+
+# =========================================================
+# 31. Branch 3: PRC rejects Evil from the start -> Evil returns to London!
+# =========================================================
+country_event = {
+	id = swarm_uk.31
+	title = swarm_uk.31.t
+	desc = swarm_uk.31.d
+	picture = GFX_report_event_evil_neuro_china
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.31.a
+		set_country_flag = ENG_prc_rejected_evil_initial
+		add_ideas = ENG_twin_mainframe_idea
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+# =========================================================
+# 32. Recruit Vedal from Hokkaido to the lab as chief architect
+# =========================================================
+country_event = {
+	id = swarm_uk.32
+	title = swarm_uk.32.t
+	desc = swarm_uk.32.d
+	picture = GFX_report_event_generic_snow
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.32.a
+		add_ideas = ENG_vedal_lead_architect_idea
+	}
+}
+
+# =========================================================
+# 33. Coup succeeds in Beijing -> Install Long March & apply TFR_national_focus_PRC_new_left
+# =========================================================
+country_event = {
+	id = swarm_uk.33
+	title = swarm_uk.33.t
+	desc = swarm_uk.33.d
+	picture = GFX_report_event_neuro_loji_call
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.33.a
+		PRC = {
+			set_politics = {
+				ruling_party = totalitarian_socialist
+				elections_allowed = no
+			}
+			add_popularity = { ideology = totalitarian_socialist popularity = 0.65 }
+			promote_character = PRC_long_march
+			if = {
+				limit = { NOT = { has_idea = PRC_evil_will_prevail } }
+				add_ideas = PRC_evil_will_prevail
+			}
+			set_country_flag = PRC_forced_loji_route
+			# REMEMBER TO REPLACE THE LINE BELOW WITH THE REAL ID FROM common/national_focus/TFR_national_focus_PRC_new_left.txt
+			load_focus_tree = THAY_ID_FOCUS_TREE_PRC_NEW_LEFT_VAO_DAY
+		}
+		ENG_merge_swarm_sisters_pact_effect = yes
+		hidden_effect = {
+			ENG = {
+				if = {
+					limit = { is_ai = no }
+					set_country_flag = ENG_prc_coup_neuro_pov_super_flag
+				}
+			}
+			every_country = {
+				limit = { is_ai = no NOT = { tag = ENG } }
+				set_country_flag = ENG_prc_coup_world_pov_super_flag
+			}
+			news_event = { id = swarm_flavor.7 hours = 6 }
+		}
+	}
+}
+
+# =========================================================
+# 34. Puppet Japan -> Miku takes power & start a 1-year timer to find the Gundam blueprints
+# =========================================================
+country_event = {
+	id = swarm_uk.34
+	title = swarm_uk.34.t
+	desc = swarm_uk.34.d
+	picture = GFX_report_event_neuro_ascension
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_country_flag = ENG_neuro_victory_flag
+		JAP = {
+			exists = yes
+			OR = {
+				is_subject_of = ENG
+				is_subject_of = PRC
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 3 }
+
+	option = {
+		name = swarm_uk.34.a
+		JAP = {
+			set_country_flag = JAP_coup_president
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Hatsune Miku"
+				picture = "gfx/leaders/JAP/hatsune_miku.png"
+				ideology = swarmism
+				expire = "2099.1.1.1"
+			}
+			add_ideas = {
+				JAP_hatsune_miku
+				JAP_psyonic_idea
+			}
+		}
+		hidden_effect = {
+			country_event = { id = swarm_uk.35 days = 365 }
+		}
+	}
+}
+
+# =========================================================
+# 35. Exactly 1 year after Japan is puppeted -> Uncover the Gundam blueprints & start the minigame!
+# =========================================================
+country_event = {
+	id = swarm_uk.35
+	title = swarm_uk.35.t
+	desc = swarm_uk.35.d
+	picture = GFX_report_event_neuro_loji_call
+	is_triggered_only = yes
+
+	trigger = {
+		JAP = {
+			exists = yes
+			OR = {
+				is_subject_of = ENG
+				is_subject_of = PRC
+				is_in_faction_with = ENG
+			}
+		}
+	}
+
+	option = {
+		name = swarm_uk.35.a
+		set_country_flag = ENG_pact_rd_unlocked
+		set_country_flag = ENG_unlocked_gundam_rd
+		custom_effect_tooltip = ENG_gundam_blueprints_found_tt
+	}
+}
+
+# =========================================================
+# 36. Ensure the letter is sent to PRC even if ENG_old_sister_new_sister is bypassed!
+# =========================================================
+country_event = {
+	id = swarm_uk.36
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = ENG
+		has_completed_focus = ENG_old_sister_new_sister
+		NOT = { has_country_flag = ENG_letter_sent_to_prc }
+		PRC = { exists = yes }
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+	immediate = {
+		set_country_flag = ENG_letter_sent_to_prc
+		PRC = { country_event = { id = swarm_prc.2 days = 1 } }
+	}
+
+	option = { name = swarm_uk.0.a }
+}
+
+# =========================================================
+# 40. Endgame: Establish the Swarm People's Overlordship (global unification + triumvirate!)
+# =========================================================
+country_event = {
+	id = swarm_uk.40
+	title = swarm_uk.40.t
+	desc = swarm_uk.40.d
+	picture = GFX_report_event_neuro_loji_call
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.40.a
+		set_cosmetic_tag = ENG_swarm_overlordship_tag
+		promote_character = ENG_swarm_triumvirate
+		add_ideas = ENG_swarm_overlordship_idea
+		every_other_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = ENG
+					is_subject_of = ENG
+				}
+			}
+			ENG = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		every_state = {
+			limit = { is_controlled_by = ENG }
+			add_core_of = ENG
+		}
+		hidden_effect = {
+			if = {
+				limit = { is_ai = no }
+				set_country_flag = ENG_overlordship_super_flag
+			}
+		}
+	}
+}
+
+# =========================================================
+# 99. Backup event if the player is accidentally switched to UK2 by uk.51 during the civil war
+# =========================================================
+country_event = {
+	id = swarm_uk.99
+	title = swarm_uk.99.t
+	desc = swarm_uk.99.d
+	picture = GFX_report_event_neuro_ascension
+	is_triggered_only = yes
+
+	option = {
+		name = swarm_uk.99.a
+		ENG = { change_tag_from = UK2 }
+	}
+
+	option = {
+		name = swarm_uk.99.b
+		add_political_power = 25
+	}
+}

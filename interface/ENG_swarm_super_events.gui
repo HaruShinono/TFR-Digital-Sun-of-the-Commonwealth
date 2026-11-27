@@ -1,0 +1,77 @@
+guiTypes = {
+	containerWindowType = {
+		name = "ENG_swarm_super_event_window"
+		size = { width = 620 height = 470 }
+		position = { x = 0 y = -40 }
+		orientation = center
+		origo = center
+		moveable = yes
+		click_to_front = yes
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_bg"
+		}
+
+		instantTextBoxType = {
+			name = "super_event_title"
+			position = { x = 20 y = 16 }
+			font = "hoi_24header"
+			text = "[GetSwarmSuperEventTitle]"
+			maxWidth = 580
+			maxHeight = 32
+			format = center
+		}
+
+		# Ảnh Super Event (Kích thước: 580 x 260 px)
+		iconType = {
+			name = "super_img_neuro_ascension"
+			spriteType = "GFX_se_neuro_ascension"
+			position = { x = 20 y = 55 }
+		}
+		iconType = {
+			name = "super_img_prc_coup_neuro"
+			spriteType = "GFX_se_prc_coup_neuro"
+			position = { x = 20 y = 55 }
+		}
+		iconType = {
+			name = "super_img_prc_coup_world"
+			spriteType = "GFX_se_prc_coup_world"
+			position = { x = 20 y = 55 }
+		}
+		iconType = {
+			name = "super_img_ssw_pact"
+			spriteType = "GFX_se_ssw_pact"
+			position = { x = 20 y = 55 }
+		}
+		iconType = {
+			name = "super_img_filtered_russia"
+			spriteType = "GFX_se_filtered_russia"
+			position = { x = 20 y = 55 }
+		}
+		iconType = {
+			name = "super_img_overlordship"
+			spriteType = "GFX_se_overlordship"
+			position = { x = 20 y = 55 }
+		}
+
+		instantTextBoxType = {
+			name = "super_event_quote"
+			position = { x = 30 y = 325 }
+			font = "hoi_18mbs"
+			text = "[GetSwarmSuperEventQuote]"
+			maxWidth = 560
+			maxHeight = 85
+			format = center
+		}
+
+		buttonType = {
+			name = "super_event_close_button"
+			position = { x = 200 y = 415 }
+			quadTextureSprite = "GFX_button_221x34"
+			buttonText = "[GetSwarmSuperEventButton]"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_ok
+		}
+	}
+}

@@ -1,0 +1,47 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			ENG = {
+				recruit_character = ENG_neuro_sama
+				recruit_character = ENG_evil_neuro
+				recruit_character = ENG_vedal
+				recruit_character = ENG_swarm_triumvirate
+			}
+		}
+	}
+
+	on_daily = {
+		effect = {
+			if = {
+				limit = {
+					original_tag = ENG
+					has_country_flag = ENG_ogas_minigame_active
+				}
+				ENG_check_swarm_minigame_victory = yes
+			}
+		}
+	}
+
+	on_weekly = {
+		effect = {
+			if = {
+				limit = {
+					original_tag = ENG
+					has_country_flag = ENG_neuro_victory_flag
+					NOT = {
+						has_country_leader = {
+							character = ENG_neuro_sama
+							ruling_only = yes
+						}
+					}
+				}
+				set_politics = {
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+				promote_character = ENG_neuro_sama
+				load_focus_tree = ENG_neuro_focus_tree
+			}
+		}
+	}
+}
