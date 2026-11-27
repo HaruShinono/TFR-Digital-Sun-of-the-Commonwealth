@@ -65,8 +65,8 @@ From rebuilding the shattered British Isles and establishing a new Commonwealth 
 
 The mod is currently under active development. Here's what I hope to bring to the Neuroverse in future updates!
 
-- [ ] **Phase 1 – Visual Polish:** Replace placeholder assets with custom focus icons, National Spirit icons, advisor portraits, and bespoke Super Event artwork.
-- [ ] **Phase 2 – More Worldbuilding & Events:** Additional flavor events, international news events, custom Super Event music, and deeper diplomatic interactions.
+- [ ] **Phase 1 – More Worldbuilding & Events:** Additional flavor events, international news events, custom Super Event music, and deeper diplomatic interactions.
+- [ ] **Phase 2 – Visual Polish:** Replace placeholder assets with custom focus icons, National Spirit icons, advisor portraits, and bespoke Super Event artwork.
 - [ ] **Phase 3 – Evil Neuro & Vedal UK Paths:** Dedicated focus trees and storylines for Evil Neuro (*Evilyn Jucheism*) and Vedal987 (*Green Alcoholism*).
 - [ ] **Phase 4 – Evil Neuro's China Content:** A dedicated PRC sub-branch / focus tree for Evil Neuro alongside Loji's Long March path.
 - [ ] **Phase 5 – Balancing & Localization:** Gameplay balancing, bug fixes, community feedback, and additional translations.
