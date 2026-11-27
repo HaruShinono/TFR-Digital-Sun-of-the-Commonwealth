@@ -137,5 +137,5 @@ You don't need to be a professional. Enthusiasm and a willingness to help are mo
   <br><br>
   <b>Made with love, questionable decisions, and an unreasonable amount of Neuro-sama.</b>
   <br>
-  <i>Wan wan! ♥</i>
+  <i>And "Wan wan!" ♥</i>
 </p>
