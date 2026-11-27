@@ -10,7 +10,7 @@
 
 <!-- Replace this placeholder with your Steam Workshop thumbnail -->
 <p align="center">
-  <img src="thumbnail.png" alt="Digital Sun of the Commonwealth - Steam Workshop Thumbnail" width="100%">
+  <img src="gitdesc/bigthumbnail.png" alt="Digital Sun of the Commonwealth - Steam Workshop Thumbnail" width="100%">
 </p>
 
 ---
@@ -37,7 +37,7 @@ From rebuilding the shattered British Isles and establishing a new Commonwealth 
 
 ## In-Game Preview
 <p align="center">
-  <img src="neuromenu.png" alt="Neuro-sama Takes Power - In-game Screenshot" width="100%">
+  <img src="gitdesc/neuromenu.png" alt="Neuro-sama Takes Power - In-game Screenshot" width="100%">
   <br>
   <i>Neuro-sama has officially taken over Britain. Everything is perfectly fine. Probably.</i>
 </p>
